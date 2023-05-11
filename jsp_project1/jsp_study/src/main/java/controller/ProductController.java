@@ -123,8 +123,8 @@ public class ProductController extends HttpServlet {
 			
 			ProductVO pvo1 = new ProductVO(pno1, pname1, price1, regdate1, madeby1);
 			
-			isOk = svc.edit(pvo1); // 리턴값 1개의 행이 등록
-			System.out.println("상품수정 >>>" + (isOk > 0 ? "성공" : "실패"));
+			int isOk2 = svc.edit(pvo1); // 리턴값 1개의 행이 등록
+			System.out.println("상품수정 >>>" + (isOk2 > 0 ? "성공" : "실패"));
 
 			destPage = "/list.pd";
 			// /list.jsp로 가면 아무것도 안나옴
@@ -133,8 +133,8 @@ public class ProductController extends HttpServlet {
 		case "/remove.pd":
 			int pno2 = Integer.parseInt(request.getParameter("pno"));
 			
-			isOk = svc.remove(pno2); // 리턴값 1개의 행이 등록
-			System.out.println("상품삭제 >>>" + (isOk > 0 ? "성공" : "실패"));
+			int isOk3 = svc.remove(pno2); // 리턴값 1개의 행이 등록
+			System.out.println("상품삭제 >>>" + (isOk3 > 0 ? "성공" : "실패"));
 			destPage = "/list.pd";
 			break;
 		}
