@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+D:\_jsp_workspace\jstl_project\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-104328806.index
-2636460803.index
-3977062462.index
-982231020.index
-1325126777.index
-4005709123.index
-2940335659.index
