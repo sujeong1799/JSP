@@ -1,9 +1,0 @@
-package service;
-
-import domain.ProdcutVO;
-
-public interface Service {
-
-	int register(ProdcutVO pvo);
-
-}

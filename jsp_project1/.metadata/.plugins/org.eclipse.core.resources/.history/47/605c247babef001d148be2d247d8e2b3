@@ -1,9 +1,0 @@
-package repository;
-
-import domain.ProdcutVO;
-
-public interface DAO {
-
-	int insert(ProdcutVO pvo);
-
-}
