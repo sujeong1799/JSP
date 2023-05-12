@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  
+  <typeAliases>
+     <typeAlias type="domain.MemberVO" alias="mvo" />
+  </typeAliases>
+  
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED"> <!-- 메모리 공간을 남겨주기 위해서 POOLED로 설정 -->
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/jspdb"/>
+        <property name="username" value="jspuser"/>
+        <property name="password" value="mysql"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  
+  <mappers> <!-- dao역할을 mapper가 함!(SQL구문 전달) -->
+    <mapper resource="mappers/memberMapper.xml"/> <!-- 폴더는 / , 패키지는 . -->
+  </mappers>
+  
+</configuration>

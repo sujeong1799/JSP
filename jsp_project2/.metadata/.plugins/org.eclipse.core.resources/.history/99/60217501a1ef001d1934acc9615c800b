@@ -1,0 +1,13 @@
+package repository;
+
+import domain.ProdcutVO;
+
+public class ProductDAO implements DAO {
+
+	@Override
+	public int insert(ProdcutVO pvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
