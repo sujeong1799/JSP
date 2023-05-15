@@ -20,5 +20,27 @@ public class MemberServiceImpl implements MemberService {
 		log.info(">>> register service 진입!!!!");
 		return mdao.insert(mvo);
 	}
+	@Override
+	public MemberVO login(MemberVO mvo2) {
+		log.info(">>> login service 진입!!!!");
+		// mvo2와 일치하는 자료 좀 찾아줄래?
+		return mdao.selectOne(mvo2);
+	}
+	@Override
+	public int lastLogin(String id2) {
+		log.info(">>> logout service 진입!!!!");
+		return mdao.lastlogin(id2);
+	}
+	@Override
+	public int edit(MemberVO mvo4) {
+		log.info(">>> edit service 진입!!!!");
+		return mdao.edit(mvo4);
+	}
+	@Override
+	public int delete(MemberVO mvo5) {
+		log.info(">>> delete service 진입!!!!");
+		return mdao.delete(mvo5);
+	}
+
 
 }

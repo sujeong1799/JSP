@@ -59,12 +59,21 @@ primary key(id));
 		this.age = age;
 	}
 	
+	// delete 생성자
+	
+	public MemberVO(String id) {
+		this.id = id;
+	}
+	
 	// getter / setter
 
 
+	
 	public String getId() {
 		return id;
 	}
+
+
 
 
 	public void setId(String id) {

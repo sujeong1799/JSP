@@ -8,11 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.MemberVO;
+import javafx.scene.control.Alert;
 import service.MemberService;
 import service.MemberServiceImpl;
 
@@ -65,6 +67,132 @@ public class MemberController extends HttpServlet {
          log.info(">>> JOIN > " + (isOk > 0 ? "성공" : "실패"));
          destPage = "/"; //이렇게만 적어도 index페이지로 이동
          break;
+         
+      case "login": // 로그인 페이지로 이동
+    	  log.info(">>> login page 이동");
+    	  destPage = "/member/login.jsp";
+    	  break;
+    	  
+      case "login_auth":  //실제 로그인이 일어나는 형태
+    	  // 트라이캐치하능게 죠음
+    	  try {
+    		  
+    		  String id2 = request.getParameter("id");
+        	  String password2 = request.getParameter("password");
+        	  MemberVO mvo2 = new MemberVO(id2, password2);
+        	  // 해당 id, password가 DB상에 있는지 체크
+        	  // 해당 객체(사용자)의 값을 가져와서~
+        	  // 체크 후 해당 객체(사용자)를 세션에 담아준다. (이 사람이 현재 로그인 중이라는걸 전체에다 알림)
+        	  // 로그인한 사용자 계정을 달라고 요청, 내가 객체를 줄테니까 일치하는 객체를 가져와봐
+        	  log.info(">>> login 요청" + mvo2);
+        	  MemberVO loginMvo = msv.login(mvo2);
+        	  // 같은 정보가 있으면 객체를 리턴, 해당 값이 없다면 null 리턴 
+        	  // 객체가 있다면 세션에 저장
+        	  
+        	  // 가져온 loginMvo가 null이 아니라면
+        	  if(loginMvo != null) {
+        		  //세션을 가져올거야. 연결된 세션이 없다면 새로 생성
+        		  // request에 있는 세션을 가져와!
+        		  HttpSession ses = request.getSession();
+        		  ses.setAttribute("ses", loginMvo);
+        		  // 로그인 유지 시간 (초단위) 10분후에 로그아웃된다
+        		  ses.setMaxInactiveInterval(10*60);
+        	  }else {
+        		  // null이라면 값이 0이라는걸 리턴한다.
+        		  request.setAttribute("msg_login", 0);
+        	  }
+        	  destPage="/";
+    		  
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	  
+    	
+    	  break;
+    	  
+      case "logout":
+    	  
+    	  try {
+			// 연결되어 있는 세션이 있다면 가져오기
+    		// 로그인이 되어 있다면 그 값을 가져올거고 아니면 null값 가져오겠지
+    		 HttpSession ses = request.getSession();
+    		// 마지막 로그인 시간 기록
+    		 // 현재 접속중인 객체를 가져오세요(이 객체가 일반 어쩌구로 가져오기 때문에 MemberVO로 형변환 해야함)
+    		MemberVO mvo2 = (MemberVO)ses.getAttribute("ses");
+    		// id와 일치하는 id에게 현재시간으로 세팅해주세요라고 보낸다.
+    		String id2 = mvo2.getId();
+    		log.info(">>>>> login id : "+id2);
+    		// 로그인정보(id)를 주고 마지막 로그인 시간 기록(원래는 null인데 update해줘야한다)
+    		isOk = msv.lastLogin(id2);
+            log.info(">>> logout > " + (isOk > 0 ? "성공" : "실패"));
+    		// 권한해제
+    		ses.invalidate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+    	  destPage="/";
+    	  
+    	  break;
+    	  
+      	case "modify" :
+      		try {
+				
+      			// 연결되어 있는 세션이 있다면 가져오기
+      			HttpSession ses = request.getSession();
+      			// 현재 접속중인 객체를 가져오세요
+      			MemberVO mvo3 = (MemberVO)ses.getAttribute("ses");
+      			// ses에 있는 세션을 가져와
+      			
+      			destPage="/member/modify.jsp";
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
+    	  break;
+    	  
+    	  
+		case "edit":
+			try {
+				
+				String id4 = request.getParameter("id");
+				String password4 = request.getParameter("password");
+				String email4 = request.getParameter("email");
+				int age4 = Integer.parseInt(request.getParameter("age"));
+				
+				MemberVO mvo4 = new MemberVO(id4, password4, email4, age4);
+				
+				isOk = msv.edit(mvo4); // 리턴값 1개의 행이 등록
+				log.info(">>> edit > " + (isOk > 0 ? "성공" : "실패"));
+				HttpSession ses = request.getSession();
+				MemberVO mvo6 = (MemberVO)ses.getAttribute("ses");
+				
+				
+				destPage="/";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    	  
+	    	break;
+	    	
+		case "delete":
+			
+			try {
+				HttpSession ses = request.getSession();
+				MemberVO mvo5 = (MemberVO)ses.getAttribute("ses");
+				ses.setAttribute("ses", mvo5);
+				
+				String id5 = request.getParameter("id");
+				
+				isOk = msv.delete(mvo5);
+				log.info(">>> delete > " + (isOk > 0 ? "성공" : "실패"));
+				
+				destPage="logout";
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
       }
       
       

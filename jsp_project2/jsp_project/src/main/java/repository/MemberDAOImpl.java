@@ -31,4 +31,44 @@ public class MemberDAOImpl implements MemberDAO {
 		return isOk;
 	}
 
+	@Override
+	public MemberVO selectOne(MemberVO mvo2) {
+		log.info(">>> login DAO 진입");
+		// 어차피 객체로 들어감.. 
+		// 검색된 객체를 가져오는거라서 isOK안써도 됨
+		return sql.selectOne(NS + "login", mvo2);
+	}
+
+	@Override
+	public int lastlogin(String id2) {
+		log.info(">>> logout DAO 진입");
+		int isOk = sql.update(NS + "logout", id2);
+		if(isOk > 0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+	@Override
+	public int edit(MemberVO mvo4) {
+		log.info(">>> edit DAO 진입");
+		int isOk = sql.update(NS + "edit", mvo4);
+		if(isOk > 0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+	@Override
+	public int delete(MemberVO mvo5) {
+		log.info(">>> delete DAO 진입");
+		int isOk = sql.delete(NS + "delete", mvo5);
+		if(isOk > 0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+
+
 }

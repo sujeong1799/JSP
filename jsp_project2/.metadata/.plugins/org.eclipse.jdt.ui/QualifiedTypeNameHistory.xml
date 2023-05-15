@@ -25,4 +25,6 @@
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
     <fullyQualifiedTypeName name="orm.DatabaseBuilder"/>
     <fullyQualifiedTypeName name="service.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Alert"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>

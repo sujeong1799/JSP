@@ -1,0 +1,64 @@
+package repository;
+
+import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import domain.MemberVO;
+import orm.DatabaseBuilder;
+import service.MemberServiceImpl;
+
+public class MemberDAOImpl implements MemberDAO {
+	
+	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
+	private SqlSession sql;
+	// NameSpace = SQL이 mapper를 구분하기 위한 이름
+	// NameSpace.SQL구문이름
+	private String NS = "MemberMapper.";
+	
+	public MemberDAOImpl() {
+		new DatabaseBuilder();
+		sql = DatabaseBuilder.getFactory().openSession(); // sql연결이라고하네여
+	}
+
+	@Override
+	public int insert(MemberVO mvo) {
+		// sql.insert(NS+구문이름, 보내야하는객체(가져와야하는객체?));
+		int isOk = sql.insert(NS+"reg", mvo); // MemberMapper.reg, 객체임
+		if(isOk > 0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+	@Override
+	public MemberVO selectOne(MemberVO mvo2) {
+		log.info(">>> login DAO 진입");
+		// 어차피 객체로 들어감.. 
+		// 검색된 객체를 가져오는거라서 isOK안써도 됨
+		return sql.selectOne(NS + "login", mvo2);
+	}
+
+	@Override
+	public int lastlogin(String id2) {
+		log.info(">>> logout DAO 진입");
+		int isOk = sql.update(NS + "logout", id2);
+		if(isOk > 0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+	@Override
+	public int edit(MemberVO mvo4) {
+		log.info(">>> edit DAO 진입");
+		int isOk = sql.update(NS + "edit", mvo4);
+		if(isOk > 0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+
+
+}
