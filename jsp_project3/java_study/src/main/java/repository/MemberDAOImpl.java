@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,12 +22,52 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public int insert(MemberVO mvo) {
+		log.info(">>> insert DAO 진입");
 		int isOk = sql.insert(NS+"reg", mvo);
 		if(isOk > 0) {
 			sql.commit();
 		}
 		return isOk;
 	}
+
+	@Override
+	public MemberVO login(MemberVO mvo) {
+		log.info(">>> login DAO 진입");
+		// 어차피 객체로 들어감
+		// 검색된 객체를 가져오는거라서 isOK안써도 됨
+		return sql.selectOne(NS+"log", mvo);
+	}
+
+	@Override
+	public int logout(String id) {
+		log.info(">>> logout DAO 진입");
+		// 로그아웃하면 마지막로그인했던기록 업데이트 해야한다.
+		int isOk = sql.update(NS+"logout", id);
+		if(isOk > 0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+	@Override
+	public List<MemberVO> selectList() {
+		log.info(">>> list DAO 진입");
+
+		return sql.selectList(NS+"list");
+	}
+
+	@Override
+	public int editOne(MemberVO mvo) {
+		log.info(">>> edit DAO 진입");
+		int isOk = sql.update(NS+"edit", mvo);
+		if(isOk > 0) {
+			sql.commit();
+		}
+		return isOk;
+	}
+
+
+
 
 
 

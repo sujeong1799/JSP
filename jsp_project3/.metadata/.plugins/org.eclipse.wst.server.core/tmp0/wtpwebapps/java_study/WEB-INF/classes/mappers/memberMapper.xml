@@ -7,4 +7,19 @@
 		insert into member(id, password, email, birth)
 		values(#{id}, #{password}, #{email}, #{birth})
 	</insert>
+	<select id="log" parameterType="mvo" resultType="mvo">
+		select * from member where id = #{id} and password = #{password}
+	</select>
+	<update id="logout" parameterType="String">
+		update member set last_login = now() where id = #{id}
+	</update>
+	<select id="list" parameterType="mvo" resultType="mvo">
+  		select * from member
+  	</select>
+  	<select id="modify" parameterType="mvo" resultType="mvo">
+  		select * from member where id = #{id}
+  	</select>
+  	<update id="edit" parameterType="mvo">
+  		update member set password = #{password}, email = #{email}, birth = #{birth} where id = #{id}
+  	</update>
 </mapper>

@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,9 +28,30 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO login(MemberVO mvo) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("login service 진입!");
+		return mdao.login(mvo);
 	}
+
+	@Override
+	public int logout(String id) {
+		log.info("logout service 진입");
+		return mdao.logout(id);
+	}
+
+	@Override
+	public List<MemberVO> list() {
+		log.info("list service 진입");
+		return mdao.selectList();
+	}
+
+	@Override
+	public int edit(MemberVO mvo) {
+		log.info("edit service 진입");
+		return mdao.editOne(mvo);
+	}
+
+
+
 
 
 

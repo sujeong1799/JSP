@@ -16,7 +16,7 @@
 	email<br>
 	<input type="email" name="email" placeholder="email@naver.com"><br>
 	생년월일<br>
-	<input type="text" name="birth" placeholder="ex) 990101"><br><br>
+	<input type="text" name="birth" placeholder="ex) 20230101"><br><br>
 	
 <button type="submit">등록완료</button>
 

@@ -30,6 +30,11 @@ Primary key(id));
 		this.password = password;
 	}
 	
+	// modify 생성자
+	public MemberVO(String id) {
+		this.id = id;
+	}
+	
 	// 등록 생성자
 
 
@@ -40,12 +45,6 @@ Primary key(id));
 		this.birth = birth;
 	}
 
-	
-	@Override
-	public String toString() {
-		return "MemberVO [id=" + id + ", password=" + password + ", email=" + email + ", birth=" + birth + ", reg_date="
-				+ reg_date + ", last_login=" + last_login + "]";
-	}
 
 	// 회원리스트 생성자
 	public MemberVO(String id, String email, String reg_date) {
@@ -70,6 +69,12 @@ Primary key(id));
 		this.birth = birth;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "MemberVO [id=" + id + ", password=" + password + ", email=" + email + ", birth=" + birth + ", reg_date="
+				+ reg_date + ", last_login=" + last_login + "]";
+	}
 	
 	// getter / setter
 

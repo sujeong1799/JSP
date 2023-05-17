@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,21 +78,95 @@ public class MemberController extends HttpServlet {
          
       case "login_auth":
     	  try {
+    		  // 해당 id, password가 DB상에 있는지 체크
     		  String id = request.getParameter("id");
     		  String password = request.getParameter("password");
     		  
     		  MemberVO mvo = new MemberVO(id, password);
     		  log.info(">>> login 요청 " + mvo);
+    		  
     		  MemberVO loginMvo = msv.login(mvo);
     		  
-    		  if(loginMvo !=null)
+    		  if(loginMvo !=null) {
+    			  
+    			  HttpSession ses = request.getSession();
+    			  ses.setAttribute("ses", loginMvo);
+    			  ses.setMaxInactiveInterval(10*60);
+    		  }else {
+    			  request.setAttribute("msg_login", 0);
+    		  }
     		  
-    		  log.info(">>> login > "+ (isOk > 0 ? "성공" : "실패"));
-			
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
     	  destPage="/";
+    	  break;
+    	  
+      case "logout":
+    	  try {
+			//현재 연결되어 있는 세션이 있다면 가져오기
+    		  HttpSession ses = request.getSession();
+    		  // 현재 접속중인 객체를 가져와라
+    		  MemberVO mvo = (MemberVO) ses.getAttribute("ses");
+    		  // id와 일치하는지 확인
+    		  String id = mvo.getId();
+    		  log.info(">>> login id : "+id);
+    		  
+    		  isOk = msv.logout(id);
+    		  log.info(">>> logout > " + (isOk > 0 ? "성공":"실패"));
+    		  //권한해제
+    		  ses.invalidate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	  break;
+    	  
+      case "list":
+    	  try {
+			List<MemberVO> list = new ArrayList<MemberVO>();
+			list = msv.list();
+			request.setAttribute("list", list);
+			log.info(">>> list 출력 완료");
+			destPage = "/member/list.jsp";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	  
+    	  break;
+      case "modify":
+    	  try {
+    			log.info(">>> modify page 접근");
+    			// 지금 로그인 되어있는 값 가져와서 뿌리기
+      			HttpSession ses = request.getSession();
+      			MemberVO mvo = (MemberVO)ses.getAttribute("ses");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	  destPage="/member/modify.jsp";
+    	  break;
+    	  
+      case "edit":
+    	  try {
+    		String id = request.getParameter("id");
+			String password = request.getParameter("password");
+			String email = request.getParameter("email");
+			int birth = Integer.parseInt(request.getParameter("birth"));
+			
+			MemberVO mvo = new MemberVO(id, password, email, birth);
+			isOk = msv.edit(mvo);
+			log.info(">>> edit > "+ (isOk > 0 ? "성공" : "실패"));
+			log.info(">>> modify 완료, session 변경시작");
+			msv.login(mvo);
+			HttpSession ses = request.getSession();
+			ses.setAttribute("ses", mvo);
+			log.info(">>> session 변경 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	  destPage = "/";
     	  break;
       }
       

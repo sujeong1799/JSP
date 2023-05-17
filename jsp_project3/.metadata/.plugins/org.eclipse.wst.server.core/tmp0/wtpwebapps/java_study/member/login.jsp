@@ -9,12 +9,13 @@
 <body>
 
 <div align="center">
-<form action="/mem/login">
+<form action="/mem/login_auth">
 아이디<br>
-<input type="text" name="id" placeholder="아이디를 입력해주세요.">
+<input type="text" name="id" placeholder="아이디를 입력해주세요."><br><br>
 비밀번호<br>
 <input type="text" name="password" placeholder="비밀번호를 입력해주세요.">
-<input>
+<br><br>
+<button type="submit">login</button>
 </div>
 
 </form>
