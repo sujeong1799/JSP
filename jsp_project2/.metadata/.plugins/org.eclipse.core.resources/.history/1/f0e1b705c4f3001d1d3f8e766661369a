@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>detail</title>
+</head>
+<body>
+	
+	<br>
+	<table border="1">
+		<tr align="center">
+		<th>글번호</th>
+			<td>${bvo.bno }</td>
+		</tr>
+		<tr align="center">
+			<th>제목</th>
+			<td>${bvo.title }</td>
+		</tr>
+		<tr align="center">
+			<th>글쓴이</th>
+			<td>${bvo.writer }</td>
+		</tr>
+		<tr align="center">
+			<th>작성일자</th>
+			<td>${bvo.reg_date }</td>
+		</tr>
+		<tr align="center">
+			<th>내용</th>
+			<td>${bvo.content }</td>
+		</tr>
+	</table>
+	<button type="submit">수정</button>
+	<button type="submit">삭제</button>
+</body>
+</html>

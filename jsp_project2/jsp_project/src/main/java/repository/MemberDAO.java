@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import domain.MemberVO;
 
 public interface MemberDAO {
@@ -13,6 +15,8 @@ public interface MemberDAO {
 	int edit(MemberVO mvo4);
 
 	int delete(MemberVO mvo5);
+
+	List<MemberVO> selectList();
 
 
 

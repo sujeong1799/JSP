@@ -9,14 +9,9 @@
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="repository.ProductDAO"/>
     <fullyQualifiedTypeName name="orm.DatabaseConnector"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="domain.ProductVO"/>
-    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
-    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
-    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.io.Resources"/>
     <fullyQualifiedTypeName name="java.io.IOException"/>
@@ -27,4 +22,13 @@
     <fullyQualifiedTypeName name="service.MemberServiceImpl"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Alert"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+    <fullyQualifiedTypeName name="domain.BoardVO"/>
+    <fullyQualifiedTypeName name="controller.BoardController"/>
+    <fullyQualifiedTypeName name="repository.BoardDAO"/>
+    <fullyQualifiedTypeName name="repository.BoardDAOImpl"/>
 </qualifiedTypeNameHistroy>

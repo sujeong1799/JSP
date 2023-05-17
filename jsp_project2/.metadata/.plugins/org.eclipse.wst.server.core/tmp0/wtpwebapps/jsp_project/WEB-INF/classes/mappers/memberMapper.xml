@@ -19,6 +19,9 @@
   	<delete id="delete" parameterType="mvo">
   		delete from member where id = #{id} 
   	</delete>
+  	<select id="list" parameterType="mvo" resultType="mvo">
+  		select * from member
+  	</select>
   </mapper>
   
   

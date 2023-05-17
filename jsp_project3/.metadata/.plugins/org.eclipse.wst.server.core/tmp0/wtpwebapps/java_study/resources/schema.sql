@@ -1,0 +1,18 @@
+use mysql;
+
+create user 'javauser'@'localhost' identified by 'mysql';
+grant all privileges on jspdb.* to 'javauser'@'localhost' with grant option;
+flush privileges;
+
+create database javadb;
+
+-- 2023-05-17
+create table member(
+id varchar(100) not null,
+password varchar(100) not null,
+email varchar(100) not null,
+birth int,
+reg_date datetime default now(),
+last_login datetime,
+Primary key(id));
+

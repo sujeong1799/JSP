@@ -40,7 +40,7 @@ primary key(id));
 	}
 
 
-	// list 생성자
+	// 전체 생성자
 	
 	public MemberVO(String id, String email, int age, String reg_date, String last_login) {
 		this.id = id;
@@ -72,7 +72,6 @@ primary key(id));
 	public String getId() {
 		return id;
 	}
-
 
 
 

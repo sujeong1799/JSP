@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import domain.MemberVO;
 
 public interface MemberService {
@@ -13,6 +15,8 @@ public interface MemberService {
 	int edit(MemberVO mvo4);
 
 	int delete(MemberVO mvo5);
+
+	List<MemberVO> list();
 
 
 

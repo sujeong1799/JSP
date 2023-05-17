@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>글 수정 페이지</h1>
+	<br>
+	<form action="/brd/edit" method = "post">
+		<!-- disabled대신에 readonly쓰기 읽기만 가능하고 쓰는건X, 값도 가져올 수 있음. -->
+		글번호 : <input type="text" name ="bno" value="${bvo.bno }" readonly="readonly"><br>
+		글제목 : <input type="text" name="title" value="${bvo.title }"><br>
+		글작성자 : <input type="text" name="writer" value="${bvo.writer }"  readonly="readonly"><br>
+		글작성일 : <input type="text" name = "reg_date" value="${bvo.reg_date }" readonly="readonly"><br>
+		글내용<br>
+		<textarea rows="3" cols="30" name="content" value="${bvo.content }" ></textarea>
+
+	
+		
+	<button type="submit">수정완료</button>
+	</form>
+</body>
+</html>

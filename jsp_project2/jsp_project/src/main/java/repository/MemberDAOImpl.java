@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,6 +69,13 @@ public class MemberDAOImpl implements MemberDAO {
 			sql.commit();
 		}
 		return isOk;
+	}
+
+	@Override
+	public List<MemberVO> selectList() {
+		log.info(">>> list DAO 진입");
+		List<MemberVO> list = sql.selectList(NS+"list");
+		return list;
 	}
 
 

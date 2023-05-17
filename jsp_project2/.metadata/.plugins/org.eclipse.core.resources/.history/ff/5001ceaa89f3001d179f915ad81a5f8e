@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>List</title>
+</head>
+<body>
+
+<table>
+
+<thead border="1">
+<tr>id</tr>
+<tr>email</tr>
+<tr>age</tr>
+</thead>
+<tbody></tbody>
+
+</table>
+
+</body>
+</html>

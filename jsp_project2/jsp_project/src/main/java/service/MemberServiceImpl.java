@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,6 +42,11 @@ public class MemberServiceImpl implements MemberService {
 	public int delete(MemberVO mvo5) {
 		log.info(">>> delete service 진입!!!!");
 		return mdao.delete(mvo5);
+	}
+	@Override
+	public List<MemberVO> list() {
+		log.info(">>> list service 진입!!!!");
+		return mdao.selectList();
 	}
 
 
