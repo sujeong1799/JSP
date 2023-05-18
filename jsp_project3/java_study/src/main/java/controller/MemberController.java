@@ -24,8 +24,10 @@ import service.MemberServiceImpl;
 public class MemberController extends HttpServlet {
    private static final long serialVersionUID = 1L;
     //log 설정
-   //private static final Logger log = LoggerFactory.getLogger(클래스명.class);
+   // private static final Logger log = LoggerFactory.getLogger(클래스명.class);
+   // 로그뜨게 설정해주는것
    private static final Logger log = LoggerFactory.getLogger(MemberController.class);
+   // RequestDispatcher 원하는곳으로 보내줄게~ 줄여서 rdp라고 선언함
    private RequestDispatcher rdp;
    private MemberService msv;
    private int isOk; //확인
@@ -116,6 +118,7 @@ public class MemberController extends HttpServlet {
     		  log.info(">>> logout > " + (isOk > 0 ? "성공":"실패"));
     		  //권한해제
     		  ses.invalidate();
+    		  destPage="/";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -135,16 +138,7 @@ public class MemberController extends HttpServlet {
     	  
     	  break;
       case "modify":
-    	  try {
-    			log.info(">>> modify page 접근");
-    			// 지금 로그인 되어있는 값 가져와서 뿌리기
-      			HttpSession ses = request.getSession();
-      			MemberVO mvo = (MemberVO)ses.getAttribute("ses");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	  destPage="/member/modify.jsp";
+    	  	destPage="/member/modify.jsp";
     	  break;
     	  
       case "edit":
@@ -166,11 +160,13 @@ public class MemberController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    	  destPage = "/";
+    	  // login_auth로 안가면 마지막로그인이 공백으로 뜸
+    	  destPage = "login_auth";
+    	  
     	  break;
       }
       
-      
+      // destPage로 보내줄게
       rdp = request.getRequestDispatcher(destPage);
       rdp.forward(request, response);
       
