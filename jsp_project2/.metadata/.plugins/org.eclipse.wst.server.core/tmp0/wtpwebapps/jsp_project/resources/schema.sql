@@ -30,3 +30,13 @@ Primary key(bno));
 
 -- 2023-05-17
 alter table board add count int default 0;
+
+
+-- 2023-0519 (댓글만드는 테이블)
+Create table comment(
+cno int not null auto_increment,
+bno int default 0,
+writer varchar(100)default "익명",
+content varchar(300) not null,
+reg_date datetime default now(),
+Primary key(cno));
