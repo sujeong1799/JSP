@@ -10,13 +10,17 @@ public interface BoardDAO {
 
 	List<BoardVO> selectList();
 
-	BoardVO selectOne(int bno);
+	BoardVO detailOne(int bno);
 
 	int updateEdit(BoardVO bvo);
 
 	int removeOne(int bno);
 
 	List<BoardVO> myList(String writer);
+
+	int updateCount(int bno);
+
+	BoardVO detail1(int bno);
 
 
 }

@@ -31,10 +31,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO detail(int bno) {
-		log.info("detail service 진입");
-		return bdao.selectOne(bno);
-	}
+    public BoardVO detail(int bno) {
+        // read_count update 요청 후 detail값을 요청
+        int isOk = bdao.updateCount(bno);
+        try {
+            Thread.sleep(500); //0.5초 후에 selectOne() 요청
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return (isOk > 0)? bdao.detailOne(bno) : null;
+    }
 
 	@Override
 	public int edit(BoardVO bvo) {
@@ -52,6 +59,12 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> mylist(String writer) {
 		log.info("mylist service 진입");
 		return bdao.myList(writer);
+	}
+
+	@Override
+	public BoardVO detail1(int bno) {
+		log.info("detail1");
+		return bdao.detail1(bno);
 	}
 
 

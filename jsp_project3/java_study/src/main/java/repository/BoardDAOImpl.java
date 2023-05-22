@@ -37,19 +37,19 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public BoardVO selectOne(int bno) {
+	public BoardVO detailOne(int bno) {
 		log.info("detail DAO 진입");
-		int isOk = sql.update(BS+"read_count", bno);
-		if (isOk > 0) {
-			sql.commit();
-		}
 		return sql.selectOne(BS+"detail", bno);
 	}
 
 	@Override
 	public int updateEdit(BoardVO bvo) {
 		log.info("edit DAO 진입 ");
-		return sql.update(BS+"edit", bvo);
+		int isOk = sql.insert(BS+"edit", bvo);
+		if(isOk > 0 ) {
+			sql.commit();
+		}
+		return isOk;
 	}
 
 	@Override
@@ -70,5 +70,18 @@ public class BoardDAOImpl implements BoardDAO {
 		return list;
 	}
 
+	@Override
+    public int updateCount(int bno) {
+        // TODO Auto-generated method stub
+        int isOk = sql.update(BS+"count", bno);
+        if(isOk>0) sql.commit();
+        return isOk;
+    }
+
+	@Override
+	public BoardVO detail1(int bno) {
+
+		return sql.selectOne(BS+"detail1", bno);
+	}
 
 }

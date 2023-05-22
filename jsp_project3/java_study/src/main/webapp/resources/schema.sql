@@ -29,3 +29,12 @@ primary key(bno));
 -- 2023-05-18 추가
 alter table board add content text;
 
+-- 2023-05-21 생성
+Create table comment(
+cno int not null auto_increment,
+bno int default 0,
+writer varchar(100)default "익명",
+content varchar(300) not null,
+reg_date datetime default now(),
+Primary key(cno));
+

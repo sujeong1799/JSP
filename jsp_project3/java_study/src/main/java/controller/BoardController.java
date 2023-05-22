@@ -10,13 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
-import domain.MemberVO;
 import service.BoardService;
 import service.BoardServiceImpl;
 
@@ -26,23 +24,24 @@ public class BoardController extends HttpServlet {
 
 	// log 설정
 	private static final Logger log = LoggerFactory.getLogger(BoardController.class);
-	private RequestDispatcher rdp;
-	private BoardService bsv;
-	private int isOk;
-	private String destPage;
+	private RequestDispatcher rdp; // 웹의 목적지 주소로 객체를 전달해주는 객체
+	private String destPage; // 목적지 주소를 저장해주는 변수
+	private int isOk; //db의 insert, update, delete의 결과를 받는 변수
+	private BoardService bsv; // interface
 
 	public BoardController() {
-		bsv = new BoardServiceImpl();
+		bsv = new BoardServiceImpl(); // interface 구현체
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// 캐릭터 인코딩 설정, 컨텐츠 타입 설정
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
 		String uri = request.getRequestURI(); // 전체 요청경로
-		System.out.println(">>> uri  " + uri);
+		log.info(">>> uri  " + uri);
 		String path = uri.substring(uri.lastIndexOf("/") + 1);
 		log.info(">>path: " + path);
 
@@ -55,52 +54,53 @@ public class BoardController extends HttpServlet {
 				String content = request.getParameter("content");
 
 				BoardVO bvo = new BoardVO(title, writer, content);
-
+				// insert, update, delete => 리턴타입 isOk
+				// select => BoardVO의 객체값 (여러개 리턴이면 List)
 				isOk = bsv.insert(bvo);
 				log.info(">>> 글 등록 > " + (isOk > 0 ? "성공" : "실패"));
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			destPage = "/";
+			destPage = "/brd/list";
 			break;
 
 		case "list":
 			try {
-				List<BoardVO> list = new ArrayList<>();
-				list = bsv.list();
+				List<BoardVO> list = bsv.list();
 				request.setAttribute("list", list);
+				log.info("list 나오나요? > "+list);
 				log.info(">>> list 출력 완료");
-				destPage = "/board/list.jsp";
 			} catch (Exception e) {
 			}
+			destPage = "/board/list.jsp";
 			break;
 
 		case "detail":
 			try {
 				int bno = Integer.parseInt(request.getParameter("bno"));
-				BoardVO bvo = new BoardVO();
-				bvo = bsv.detail(bno);
+				log.info(" detail bno 넘버능?"+bno);
+				BoardVO bvo = bsv.detail(bno);
+				log.info("detail 담아오나요 ? >" +bvo);
 				request.setAttribute("bvo", bvo);
 				log.info(">>> detail 출력 완료");
-				destPage = "/board/detail.jsp";
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
+			destPage = "/board/detail.jsp";
 			break;
 
 		case "editPage":
 			try {
 				int bno = Integer.parseInt(request.getParameter("bno"));
-				BoardVO bvo = new BoardVO();
-				bvo = bsv.detail(bno);
+				BoardVO bvo = bsv.detail1(bno);
 				request.setAttribute("bvo", bvo);
 				log.info(">>> detail 출력 완료");
-				destPage = "/board/edit.jsp";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
+			destPage = "/board/edit.jsp";
 			break;
 
 		case "edit":
@@ -116,16 +116,16 @@ public class BoardController extends HttpServlet {
 					request.setAttribute("bvo", bvo);
 				}
 
-				destPage = "/brd/list";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			// destPage = "/board/list.jsp"; // 빈페이지만 띄워줌 
+			destPage = "/brd/list"; // 컨트롤러 list에서 db검색 후 객체 가지고 list.jsp로 이동
 			break;
 
 		case "remove":
 			try {
 				int bno = Integer.parseInt(request.getParameter("bno"));
-
 				isOk = bsv.remove(bno);
 				log.info(">>> 글 삭제 >" + (isOk > 0 ? "성공" : "실패"));
 			} catch (Exception e) {
@@ -139,8 +139,7 @@ public class BoardController extends HttpServlet {
 
 				String writer = request.getParameter("writer");
 
-				List<BoardVO> mylist = new ArrayList<BoardVO>();
-				mylist = bsv.mylist(writer);
+				List<BoardVO> mylist = bsv.mylist(writer);
 				log.info("mylist size > "+mylist.size());
 				
 				//가져온 리스트 사이즈가 0보다 크면 setAttribute로 넣어주고 출력한다.

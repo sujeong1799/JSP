@@ -18,6 +18,6 @@ public interface BoardService {
 
 	List<BoardVO> mylist(String writer);
 
-
+	BoardVO detail1(int bno);
 
 }
