@@ -10,4 +10,10 @@ values (#{bno}, #{writer}, #{content})
 <select id="list" parameterType="int" resultType="cvo">
 	select * from comment where bno = #{bno}
 </select>
+<delete id="remove" parameterType="int">
+	delete from comment where cno = #{cno}
+</delete>
+<update id="edit" parameterType="cvo">
+	update comment set content = #{content} where cno = #{cno} and writer = #{writer}
+</update>
  </mapper>

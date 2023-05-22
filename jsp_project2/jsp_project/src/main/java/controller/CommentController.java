@@ -115,7 +115,8 @@ public class CommentController extends HttpServlet {
 	    		  List<CommentVO> list = csv.getList(bno);
 	    		  log.info(">>> Comment Lis > DB ok");
 	    		  
-	    		  //json 형태로 변환해서 printWriter list니까 배열로 여러개 가져와
+	    		  // json 형태로 변환해서 printWriter 
+	    		  // 배열로 여러개 가져와 갯수는 list.size만큼
 	    		  JSONObject[] jsonObjArr = new JSONObject[list.size()];
 	    		  JSONArray jsonObjList = new JSONArray();
 	    		  for(int i=0; i<list.size(); i++) {
@@ -129,8 +130,11 @@ public class CommentController extends HttpServlet {
 	    			  jsonObjList.add(jsonObjArr[i]);
 	    			  
 	    		  }
+	    		  log.info(">>> jsonObjList > "+jsonObjList);
+	    		  
 	    		  // jsonData란 이름으로 toString형태보냄
 	    		  String jsonData = jsonObjList.toJSONString();
+	    		  log.info(">>> jsonData > "+jsonData);
 	    		  
 	    		  PrintWriter out = response.getWriter();
 	    		  out.print(jsonData);
@@ -140,6 +144,57 @@ public class CommentController extends HttpServlet {
 				e.printStackTrace();
 			}
 	    	  break;
+	    	  
+	      case "remove":
+	    	  try {				
+	    		  int cno = Integer.parseInt(request.getParameter("cnoVal")); // 쿼리스트링 방식
+	    		  log.info(">>> cno > "+cno);
+	    		  
+	    		  isOk = csv.remove(cno);
+	    		  log.info("remove > "+(isOk > 0 ? "성공":"실패"));
+	    		  PrintWriter out = response.getWriter();
+	    		  out.print(isOk);
+			} catch (Exception e) {
+				log.info("remove error");
+				e.printStackTrace();
+			}
+	    	  break;
+	    	  
+	      case "modify":
+	    	  try {
+	    			// js에서 보낸 데이터를 StringBuffer로 읽어들이는 작업
+	    		  StringBuffer sb = new StringBuffer();
+	    		  String line = "";
+	    		  BufferedReader br = request.getReader(); // 댓글 객체를 들고와
+	    		  while((line = br.readLine()) != null ) { // line에 값이 남아 있다면~  // line이 null이라면 더이상 읽을게 없다.
+	    			  sb.append(line); // 버퍼에 추가
+	    		  }
+	    		  log.info(">>> sb : " + sb.toString()); // toString으로 찍어줘야한다.
+	    		  
+	    		  // 객체로 생성
+	    		  // JSON <-> text
+	    		  JSONParser parser = new JSONParser();
+	    		  JSONObject jsonObj = (JSONObject) parser.parse(sb.toString());
+	    		  log.info("jsonObj > "+jsonObj);
+	    		  
+	    		  int cno = Integer.parseInt(jsonObj.get("cno").toString());
+	    		  log.info("bno ? "+cno);
+	    		  String writer = jsonObj.get("writer").toString();
+	    		  String content = jsonObj.get("content").toString();
+	    		  CommentVO cvo = new CommentVO(writer, content, cno); // 생성자 순서 확인 해야한다.
+	    		  isOk = csv.edit(cvo);
+	    		  log.info(">>> edit : "+ (isOk > 0 ? "성공":"실패"));
+	    		  
+	    		  // 결과 전송
+	    		  PrintWriter out = response.getWriter(); // 응답 객체로 보낼겨
+	    		  out.print(isOk); // 가는경우 . . . .?
+	    		  
+			} catch (Exception e) {
+				log.info("modify error");
+				e.printStackTrace();
+			}
+	    	  break;
+	    	  
 	      }
 	}
 

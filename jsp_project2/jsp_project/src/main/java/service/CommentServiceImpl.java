@@ -32,4 +32,18 @@ public class CommentServiceImpl implements CommentService {
 		return cdao.getList(bno);
 	}
 
+
+	@Override
+	public int remove(int cno) {
+		log.info(">>> remove service");
+		return cdao.remove(cno);
+	}
+
+
+	@Override
+	public int edit(CommentVO cvo) {
+		log.info(">>> edit service");
+		return cdao.edit(cvo);
+	}
+
 }

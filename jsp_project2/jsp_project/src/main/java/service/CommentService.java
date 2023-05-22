@@ -12,4 +12,9 @@ public interface CommentService {
 
 	List<CommentVO> getList(int bno);
 
+	int remove(int cno);
+
+	int edit(CommentVO cvo);
+
+
 }

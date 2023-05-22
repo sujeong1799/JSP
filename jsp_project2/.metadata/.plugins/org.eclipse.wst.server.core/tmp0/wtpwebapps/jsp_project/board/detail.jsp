@@ -20,6 +20,7 @@
 <body>
 
 	<br>
+	<div style="width:700px" >
 	<table class="table table-striped">
 		<tr align="center">
 			<th>글번호</th>
@@ -46,6 +47,7 @@
 			<td>${bvo.content }</td>
 		</tr>
 	</table>
+	</div>
 
 	<hr>
 
@@ -62,24 +64,21 @@
 	<br>
 
 	<!-- 댓글 표시 라인 -->
-	<div class="accordion accordion-flush" id="accordionFlushExample">
-		<div class="accordion-item">
-			<h2 class="accordion-header" id="flush-headingOne">
-				<button class="accordion-button collapsed" type="button"
-					data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-					aria-expanded="false" aria-controls="flush-collapseOne">
-					cno, writer</button>
-			</h2>
-			<div id="flush-collapseOne" class="accordion-collapse collapse"
-				aria-labelledby="flush-headingOne"
-				data-bs-parent="#accordionFlushExample">
-				<div class="accordion-body">
-				content, reg_date
+		<div class="accordion accordion-flush" id="accordionFlushExample">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="flush-headingOne">
+					<button class="accordion-button collapsed" type="button"
+						data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+						aria-expanded="false" aria-controls="flush-collapseOne">
+						cno, writer</button>
+				</h2>
+				<div id="flush-collapseOne" class="accordion-collapse collapse"
+					aria-labelledby="flush-headingOne"
+					data-bs-parent="#accordionFlushExample">
+					<div class="accordion-body">content, reg_date</div>
 				</div>
 			</div>
 		</div>
-	</div>
-
 	<br>
 	<div align="center">
 		<a href="/brd/modify?bno=${bvo.bno }"><button type="submit">수정</button></a>
@@ -87,10 +86,14 @@
 		<a href="/brd/list"><button>뒤로가기</button></a>
 	</div>
 	<script type="text/javascript">
-	const bnoVal = `<c:out value = "${bvo.bno}"/>`;
+		const bnoVal = `<c:out value = "${bvo.bno}"/>`;
 	</script>
-	
+
 	<!-- 링크로 달때는 타입 없어도 됨 -->
 	<script src="/resources/board_detail.js"></script>
+
+	<script type="text/javascript">
+		printCommentList(bnoVal);
+	</script>
 </body>
 </html>

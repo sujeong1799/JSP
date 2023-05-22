@@ -7,9 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body align="center">
+<body align="center" style="background-image: url('/image/산책.png');">
 	
-	<h1>로그인 페이지입니당</h1>
+	<h1 style="color: white">로그인 페이지입니당</h1>
 	
 	<%-- 
 		비교표현식
@@ -19,7 +19,7 @@
 		ses.id가 null이 아니라면 밑에 정보 뜸.
 	 --%>
 	 
-
+	<div  style="color: white" >
 	<c:choose>
 	<c:when test="${ses.id ne null }">
 		${ses.id }님이 login 하셨습니다. <br>
@@ -41,7 +41,7 @@
 	<a href="/mem/join"><button>join</button></a>
 	</c:when>
 	</c:choose>
-	
+	</div>
 	
 </body>
 
