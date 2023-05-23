@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
 import domain.MemberVO;
+import domain.PagingVO;
+import handler.PagingHandler;
 import service.BoardService;
 import service.BoardServiceImpl;
 
@@ -57,7 +59,7 @@ public class BoardController extends HttpServlet {
 				BoardVO bvo = new BoardVO(title, writer, content);
 				isOk = bsv.insert(bvo);
 				log.info(">>> 글 등록 > " + (isOk > 0 ? "성공" : "실패"));
-				destPage="/";
+				destPage="list";
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -76,6 +78,37 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
+			break;
+	
+		case "page":
+			try {
+				int pageNo = 1;
+				int qty = 10;
+				if(request.getParameter("pageNo") != null) {
+					pageNo = Integer.parseInt(request.getParameter("pageNo"));
+					qty = Integer.parseInt(request.getParameter("qty"));
+				}
+				
+				// 1, 10을 넣어도 안넣어도 상관없음.
+				PagingVO pgvo = new PagingVO(pageNo, qty);
+				// 전체 페이지 개수를 db에가서 구해와야함
+				int totCount = bsv.total();
+				log.info("전체 페이지 개수 > "+totCount);
+				// limit를 이용한 select List를 호출 (startPage, qty
+				// 한페이지에 나와야 하는 리스트
+				List<BoardVO> list = bsv.PageList(pgvo);
+				log.info(">>> list : "+list.size());// 당장 내용이 필요한게 아니면 일단 사이즈만 확인
+				PagingHandler ph = new PagingHandler(pgvo, totCount);
+				// begin < 0 오류가 나왔을때 로그 찍어보고 PagingHandler 수정하기.
+				log.info(">>>> start "+ ph.getStartPage());
+				log.info(">>>> start "+ ph.getEndPage());
+				request.setAttribute("pgh", ph);
+				request.setAttribute("list", list);
+				log.info("pageList 성공");
+				destPage ="/board/list.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+				}
 			break;
 			
 		case "detail":

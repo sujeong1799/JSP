@@ -39,5 +39,25 @@
 	<a href="/board/register.jsp"><button>게시글작성</button></a>
 	<a href="/"><button>메인가기</button></a>
 	</div>
+	
+	<!-- 페이지네이션위치 -->
+	<!-- 컨트롤러에서 page 정보를 싣고 와야함. -->
+	<!-- startpage부터 endPage까지 숫자 반복 forEach사용-->
+	<!-- pgh는 내가 알아서 정하는거임 p만해도 되고 맘대루하삼 -->
+	
+	<!-- 이전페이지 -->
+	<c:if test="${pgh.prev }">
+	<a href="/brd/page?pageNo=${pgh.startPage-1 }&qty=${pgh.pgvo.qty}"> 이전 </a>
+	</c:if>
+	
+	<c:forEach begin="${pgh.startPage }" end="${pgh.endPage }" var="i">
+	<!-- 현재 페이지 넘버를 싣고 갈거임 --> <!-- pgh.pgvo.qty 이거는 변경가능함... -->
+	<a href="/brd/page?pageNo=${i }&qty=${pgh.pgvo.qty}">${i } | </a>
+	</c:forEach>
+
+	<!-- 다음페이지 -->	
+	<c:if test="${pgh.next }">
+	<a href="/brd/page?pageNo=${pgh.endPage+1 }&qty=${pgh.pgvo.qty}"> 다음 </a>
+	</c:if>
 </body>
 </html>

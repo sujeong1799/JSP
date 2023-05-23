@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
 import domain.MemberVO;
+import domain.PagingVO;
 import repository.BoardDAO;
 import repository.BoardDAOImpl;
 
@@ -58,6 +59,21 @@ public class BoardServiceImpl implements BoardService {
 		log.info(">>> remove service 진입~!~!");
 		return bdao.removeOne(bno);
 	}
+
+	@Override
+	public int total() {
+		log.info(">>> total service 진입");
+		return bdao.total();
+	}
+
+	@Override
+	public List<BoardVO> PageList(PagingVO pgvo) {
+		log.info(">>> page service 진입");
+		
+		return bdao.pageList(pgvo);
+	}
+
+
 
 
 

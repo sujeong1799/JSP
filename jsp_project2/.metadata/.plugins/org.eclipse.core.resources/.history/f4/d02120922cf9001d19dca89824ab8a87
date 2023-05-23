@@ -1,0 +1,9 @@
+package handler;
+
+public class PagingHandler {
+	
+	private int startPage; // 실제 화면에서 보여지는 시작페이지네이션번호 
+	private int endPage;   // 실제 화면에서 보여지는 끝 페이지네이션번호
+	private boolean prev, next; // 이전, 다음 버튼 존재 여부
+	
+}

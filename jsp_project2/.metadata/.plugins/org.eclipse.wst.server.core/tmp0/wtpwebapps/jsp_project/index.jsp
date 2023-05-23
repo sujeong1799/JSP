@@ -30,7 +30,7 @@
 	<a href="/mem/list"><button>회원정보리스트</button></a>
 	<br><br>
 	<a href="/board/register.jsp"><button>게시글 작성</button></a>
-	<a href="/brd/list"><button>글 목록 보기</button></a>
+	<a href="/brd/page"><button>글 목록 보기</button></a>
 	<br><br><hr><br>
 	<a href="/mem/logout" ><button>로그아웃</button></a>
 	<br><br>

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
 import domain.MemberVO;
+import domain.PagingVO;
 import orm.DatabaseBuilder;
 
 public class BoardDAOImpl implements BoardDAO {
@@ -73,6 +74,18 @@ public class BoardDAOImpl implements BoardDAO {
 		log.info(">>> remove DAO 진입");
 
 		return sql.selectOne(BS + "remove", bno);
+	}
+
+	@Override
+	public int total() {
+		log.info(">>> total DAO 진입");
+		return sql.selectOne(BS+"total");
+	}
+
+	@Override
+	public List<BoardVO> pageList(PagingVO pgvo) {
+		log.info(">>> pageList DAO 진입");
+		return sql.selectList(BS+"pageList", pgvo);
 	}
 
 

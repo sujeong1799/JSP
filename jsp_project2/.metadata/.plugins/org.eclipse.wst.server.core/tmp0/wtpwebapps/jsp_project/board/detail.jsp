@@ -83,7 +83,7 @@
 	<div align="center">
 		<a href="/brd/modify?bno=${bvo.bno }"><button type="submit">수정</button></a>
 		<a href="/brd/remove?bno=${bvo.bno }"><button type="submit">삭제</button></a>
-		<a href="/brd/list"><button>뒤로가기</button></a>
+		<a href="/brd/page"><button>뒤로가기</button></a>
 	</div>
 	<script type="text/javascript">
 		const bnoVal = `<c:out value = "${bvo.bno}"/>`;

@@ -25,4 +25,11 @@
 	<delete id="remove" parameterType="int">
 	  	delete from board where bno = #{bno} 
 	 </delete>
+	 <select id="total" resultType="int">
+		 select count(bno) from board
+	 </select>
+	 <select id="pageList" parameterType="pgvo" resultType="bvo">
+		 select * from board order by bno desc limit #{pageStart}, #{qty};
+	 </select>
+	 
 </mapper> 

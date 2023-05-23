@@ -7,6 +7,7 @@
      <typeAlias type="domain.MemberVO" alias="mvo"/>
      <typeAlias type="domain.BoardVO" alias="bvo"/>
      <typeAlias type="domain.CommentVO" alias="cvo"/>
+     <typeAlias type="domain.PagingVO" alias="pgvo"/>
   </typeAliases>
   <environments default="development">
     <environment id="development">

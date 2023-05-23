@@ -116,9 +116,11 @@ public class CommentController extends HttpServlet {
 	    		  log.info(">>> Comment Lis > DB ok");
 	    		  
 	    		  // json 형태로 변환해서 printWriter 
-	    		  // 배열로 여러개 가져와 갯수는 list.size만큼
+	    		  // JSONObject 객체를 만들어서 list가져오기.. 
 	    		  JSONObject[] jsonObjArr = new JSONObject[list.size()];
+	    		  // JSON배열 만들어 놓기(비어있음) 
 	    		  JSONArray jsonObjList = new JSONArray();
+	    		  // for문 돌려서 새로운 JSONObject를 만들고 값을 넣어
 	    		  for(int i=0; i<list.size(); i++) {
 	    			  jsonObjArr[i] = new JSONObject(); // key : value 형태로 저장할수있는 객체가 만들어짐
 	    			  jsonObjArr[i].put("cno", list.get(i).getCno());
@@ -127,6 +129,7 @@ public class CommentController extends HttpServlet {
 	    			  jsonObjArr[i].put("content", list.get(i).getContent());
 	    			  jsonObjArr[i].put("reg_date", list.get(i).getReg_date());
 	    			  
+	    			  // 
 	    			  jsonObjList.add(jsonObjArr[i]);
 	    			  
 	    		  }

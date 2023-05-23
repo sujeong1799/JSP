@@ -94,14 +94,14 @@ function spreadCommentList(result) { // 여기 들어가는건 댓글 List
 					data-bs-toggle="collapse" `;
 		html += `data-bs-target="#flush-collapse${i}";
 					aria-expanded="false" aria-controls="flush-collapse${i}">`;
-		html += `${result[i].cno}, ${result[i].writer} </button></h2> `; // cno, writer 부분도 바꿔준다.
+		html += `${result[i].cno}, ${result[i].writer} </button></h2> `;
 		html += `<div id="flush-collapse${i}" class="accordion-collapse collapse"`;
 		html += `aria-labelledby="flush-heading${i}"
 				data-bs-parent="#accordionFlushExample">`;
 		html += `<div class="accordion-body">`;
-		html += `<button type="button" data-cno="${result[i].cno}" data-writer="${result[i].writer}" class="btn btn-sm btn-outline-success cmtModBtn">%</button>`;// 수정해줄 버튼을 만들어줄거임. 부트스트랩에서 맘에 드는거 가져오삼
-		html += `<button type="button" data-cno="${result[i].cno}" class="btn btn-sm btn-outline-danger cmtDelBtn">X</button>`; // 삭제할 버튼 만들어줄겨
-		html += `<input type="text" class="form-control" id="cmtText1" value="${result[i].content}">`; // 댓글 담을 공간 부트스트랩에서 가져옴ㅋ
+		html += `<button type="button" data-cno="${result[i].cno}" data-writer="${result[i].writer}" class="btn btn-sm btn-outline-success cmtModBtn">%</button>`;
+		html += `<button type="button" data-cno="${result[i].cno}" class="btn btn-sm btn-outline-danger cmtDelBtn">X</button>`;
+		html += `<input type="text" class="form-control" id="cmtText1" value="${result[i].content}">`;
 		html += `${result[i].reg_date}`;
 		html += `</div></div></div>`;
 		div.innerHTML += html; // 누적해서 담기

@@ -1,0 +1,13 @@
+package repository;
+
+import domain.CommentVO;
+
+public class CommentDAOImpl implements CommentDAO {
+
+	@Override
+	public int post(CommentVO cvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
