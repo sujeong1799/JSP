@@ -11,3 +11,15 @@
 5월 23, 2023 12:17:31.39 [6856:11724:0523/121731.039:ERROR:interface_endpoint_client.cc(696)] Message 1 rejected by interface blink.mojom.WidgetHost
 5월 23, 2023 12:17:57.932 [6856:11724:0523/121757.932:ERROR:interface_endpoint_client.cc(696)] Message 0 rejected by interface blink.mojom.WidgetHost
 5월 23, 2023 13:17:43.672 [6856:11724:0523/131743.672:ERROR:device_event_log_impl.cc(222)] [13:17:43.672] USB: usb_service_win.cc:104 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+
+5월 24, 2023 12:20:02.548 NEW SESSION
+5월 24, 2023 12:20:02.548 [12776:5688:0524/122002.547:ERROR:cert_issuer_source_aia.cc(34)] Error parsing cert retrieved from AIA (as DER):
+5월 24, 2023 12:20:02.549 ERROR: Couldn't read tbsCertificate as SEQUENCE
+5월 24, 2023 12:20:02.549 ERROR: Failed parsing Certificate
+5월 24, 2023 12:20:02.549 
+5월 24, 2023 12:20:02.585 [12776:5688:0524/122002.585:ERROR:cert_verify_proc_builtin.cc(679)] CertVerifyProcBuiltin for www.mrblog.net failed:
+5월 24, 2023 12:20:02.585 ----- Certificate i=0 (CN=www.mrblog.net) -----
+5월 24, 2023 12:20:02.585 ERROR: Time is after notAfter
+5월 24, 2023 12:20:02.585 
+5월 24, 2023 12:20:02.585 
+5월 24, 2023 14:57:23.483 [5300:8088:0524/145723.483:ERROR:interface_endpoint_client.cc(696)] Message 0 rejected by interface blink.mojom.WidgetHost

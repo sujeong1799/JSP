@@ -46,6 +46,7 @@
 	<!-- pgh는 내가 알아서 정하는거임 p만해도 되고 맘대루하삼 -->
 	
 	<!-- 이전페이지 -->
+	<div align="center">
 	<c:if test="${pgh.prev }">
 	<a href="/brd/page?pageNo=${pgh.startPage-1 }&qty=${pgh.pgvo.qty}"> 이전 </a>
 	</c:if>
@@ -59,5 +60,6 @@
 	<c:if test="${pgh.next }">
 	<a href="/brd/page?pageNo=${pgh.endPage+1 }&qty=${pgh.pgvo.qty}"> 다음 </a>
 	</c:if>
+	</div>
 </body>
 </html>

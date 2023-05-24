@@ -16,8 +16,8 @@
 			<h1> ${ses.id }님 어떤 소원을 빌러오셨나요?  </h1>
 			마지막 접속 : ${ses.last_login }<br><br>
 			<a href="/board/register.jsp"><button>소원빌러가기</button></a>
-			<a href="/brd/mylist?writer=${ses.id }"><button>내 소원 리스트</button></a>
-			<a href="/brd/list"><button>소원 리스트</button></a><br><br>
+			<a href="/brd/page?keyword=${ses.id}&type=w"><button type="submit">내 소원 리스트</button></a>
+			<a href="/brd/page"><button>소원 리스트</button></a><br><br>
 			<a href="/mem/modify"><button>회원정보수정</button></a>
 			<a href="/mem/list"><button>회원정보리스트</button></a>
 			<br><br><br><br><br><br>

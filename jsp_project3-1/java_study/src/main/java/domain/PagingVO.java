@@ -6,6 +6,11 @@ public class PagingVO {
 						// 게시물이 늘때마다 페이지네이션은 생성되어야함.
 	private int qty; // 한 페이지에 보여줄 게시물 수 => 10개
 	
+	
+	//검색 관련 멤버변수 추가
+	private String type; // 타입이 두가지일때 분리를 해야한다.
+	private String keyword;
+	
 	public PagingVO() { // 페이지네이션을 클릭하기전 기본 값으로 지정, 처음에 페이지가 딱 나오면 1번이 무조건 보임
 		this(1, 10);
 		
@@ -13,12 +18,20 @@ public class PagingVO {
 	
 	public PagingVO(int pageNo, int qty) {
 		this.pageNo = pageNo;
-		this.qty = qty;
+		this.qty = qty; 
 	}
 	
 	// 
 	public int getPageStart() {
-		return this.pageNo;
+		return (this.pageNo-1)*10; // 시작 limit 번지 구하능거래 근데 왜  . . . 
+	}
+	
+	// (검색)타입을 배열처리
+	public String[] getTypeToArray() {
+		// type이 null이라면 새로운 스트링을 리턴해주고 아니면 type을 split해줘야함
+		// 어떤 경우에도 null이 아니라면 this.type == null ? new String[] {} 이부분 없어도 됨
+		
+		return this.type == null ? new String[] {} : this.type.split("");
 	}
 
 	public int getPageNo() {
@@ -36,6 +49,28 @@ public class PagingVO {
 	public void setQty(int qty) {
 		this.qty = qty;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	@Override
+	public String toString() {
+		return "PagingVO [pageNo=" + pageNo + ", qty=" + qty + ", type=" + type + ", keyword=" + keyword + "]";
+	}
+	
 	
 	
 	

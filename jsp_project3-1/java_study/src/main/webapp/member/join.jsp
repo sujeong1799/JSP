@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
 </head>
-<body>
+<body style="background-image: url('/image/산책.png');">
 <h1>회원가입 페이지</h1>
 <form action="/mem/register" method="post">
 	아이디<br>

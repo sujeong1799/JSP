@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.PagingVO;
 import orm.DatabaseBuilder;
 
 public class BoardDAOImpl implements BoardDAO {
@@ -62,13 +63,6 @@ public class BoardDAOImpl implements BoardDAO {
 		return isOk;
 	}
 
-	@Override
-	public List<BoardVO> myList(String writer) {
-		log.info("myList DAO 진입");
-		List<BoardVO> list = sql.selectList(BS+"mylist", writer);
-		int isOk = list.size();
-		return list;
-	}
 
 	@Override
     public int updateCount(int bno) {
@@ -82,6 +76,18 @@ public class BoardDAOImpl implements BoardDAO {
 	public BoardVO detail1(int bno) {
 
 		return sql.selectOne(BS+"detail1", bno);
+	}
+
+	@Override
+	public int total(PagingVO pgvo) {
+		return sql.selectOne(BS+"total", pgvo);
+	}
+
+	@Override
+	public List<BoardVO> pageList(PagingVO pgvo) {
+		
+		//return sql.selectList(BS+"pageList", pgvo);
+		return sql.selectList(BS+"selectList", pgvo);
 	}
 
 }

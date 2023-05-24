@@ -79,7 +79,7 @@
 	<div align="center">
 	<a href="/brd/editPage?bno=${bvo.bno }"><button>소원수정</button></a>
 	<a href="/brd/remove?bno=${bvo.bno } "><button>소원삭제</button></a>
-	<a href="/brd/list"><button>소원리스트</button></a>
+	<a href="/brd/page"><button>소원리스트</button></a>
 	</div>
 	
 	<script type="text/javascript">

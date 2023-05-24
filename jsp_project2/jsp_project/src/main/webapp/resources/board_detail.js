@@ -7,12 +7,15 @@ async function postCommentToServer(cmtData) {
 		const config = {
 			method: 'post',
 			headers: {
+				// 설정값 
 				'content-Type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify(cmtData)
 		};
 
 		// 응답 받고자 하는 데이터 두개담아서 보내줄게
+		// fetch 함수를 사용해서 서버에 요청을 전송
+		// await => 응답이 올때까지 기다리는 역할
 		const resp = await fetch(url, config);
 		const result = await resp.text(); // isOK 컨트롤러에 보내는 결과 잘됐으면 1 안됐으면 0
 		return result;
@@ -49,6 +52,7 @@ document.getElementById('cmtAddBtn').addEventListener('click', () => {
 
 // 댓글 가져오기
 //컨트롤러에 가서 bno를 주고 bno에 해당하는 댓글 리스트 달라고 요청
+// get방식
 async function getCommentListFromServer(bno) {
 	try {
 

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.PagingVO;
 import repository.BoardDAO;
 import repository.BoardDAOImpl;
 
@@ -56,15 +57,21 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> mylist(String writer) {
-		log.info("mylist service 진입");
-		return bdao.myList(writer);
-	}
-
-	@Override
 	public BoardVO detail1(int bno) {
 		log.info("detail1");
 		return bdao.detail1(bno);
+	}
+
+	@Override
+	public int total(PagingVO pgvo) {
+		log.info("total service 진입");
+		return bdao.total(pgvo);
+	}
+
+	@Override
+	public List<BoardVO> PageList(PagingVO pgvo) {
+		log.info("pageList service 진입");
+		return bdao.pageList(pgvo);
 	}
 
 

@@ -3,6 +3,7 @@ package repository;
 import java.util.List;
 
 import domain.BoardVO;
+import domain.PagingVO;
 
 public interface BoardDAO {
 
@@ -16,11 +17,13 @@ public interface BoardDAO {
 
 	int removeOne(int bno);
 
-	List<BoardVO> myList(String writer);
-
 	int updateCount(int bno);
 
 	BoardVO detail1(int bno);
+
+	int total(PagingVO pgvo);
+
+	List<BoardVO> pageList(PagingVO pgvo);
 
 
 }

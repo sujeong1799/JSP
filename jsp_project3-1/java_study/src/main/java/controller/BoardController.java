@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.PagingVO;
+import handler.PagingHandler;
 import service.BoardService;
 import service.BoardServiceImpl;
 
@@ -62,7 +64,7 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			destPage = "list";
+			destPage = "page";
 			break;
 
 		case "list":
@@ -74,6 +76,53 @@ public class BoardController extends HttpServlet {
 			} catch (Exception e) {
 			}
 			destPage = "/board/list.jsp";
+			break;
+			
+		case "page":
+			try {
+				int pageNo = 1;
+				int qty = 10;
+				
+				// 검색
+				String type = "";
+				String keyword = "";
+				
+				if(request.getParameter("type") != null) {
+					type = request.getParameter("type");
+					keyword = request.getParameter("keyword");
+					log.info(">>>type >"+type+">>>keyword > "+keyword);
+				}
+
+				
+				if(request.getParameter("pageNo") != null) {
+					pageNo = Integer.parseInt(request.getParameter("pageNo"));
+					qty = Integer.parseInt(request.getParameter("qty"));
+				}
+				
+				// 1, 10을 넣어도 안넣어도 상관없음.
+				PagingVO pgvo = new PagingVO(pageNo, qty);
+				pgvo.setType(type);
+				pgvo.setKeyword(keyword);
+				log.info(">>> pgvo >"+pgvo);
+				
+				// 전체 페이지 개수를 db에가서 구해와야함
+				int totCount = bsv.total(pgvo);
+				log.info("전체 페이지 개수 > "+totCount);
+				// limit를 이용한 select List를 호출 (startPage, qty
+				// 한페이지에 나와야 하는 리스트
+				List<BoardVO> list = bsv.PageList(pgvo);
+				log.info(">>> list : "+list.size());// 당장 내용이 필요한게 아니면 일단 사이즈만 확인
+				PagingHandler ph = new PagingHandler(pgvo, totCount);
+				// begin < 0 오류가 나왔을때 로그 찍어보고 PagingHandler 수정하기.
+				log.info(">>>> start "+ ph.getStartPage());
+				log.info(">>>> end "+ ph.getEndPage());
+				request.setAttribute("pgh", ph);
+				request.setAttribute("list", list);
+				log.info("pageList 성공");
+				destPage ="/board/list.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+				}
 			break;
 
 		case "detail":
@@ -133,33 +182,6 @@ public class BoardController extends HttpServlet {
 			}
 			destPage = "/brd/list";
 			break;
-
-		case "mylist":
-			try {
-
-				String writer = request.getParameter("writer");
-
-				List<BoardVO> mylist = bsv.mylist(writer);
-				log.info("mylist size > "+mylist.size());
-				
-				//가져온 리스트 사이즈가 0보다 크면 setAttribute로 넣어주고 출력한다.
-				if (mylist.size() > 0) {
-					request.setAttribute("list", mylist);
-					log.info(">>> mylist 출력 완료");
-					destPage = "/board/mylist.jsp";
-				} else {
-					log.info("작성한 글이 없습니다.");
-					// alert를 뜨게하기위해 
-					request.setAttribute("msg_mylist", 0);
-					destPage = "/";
-				}
-
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-
-			break;
-
 		}
 
 		rdp = request.getRequestDispatcher(destPage);

@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import domain.BoardVO;
+import domain.PagingVO;
 
 public interface BoardService {
 
@@ -16,8 +17,10 @@ public interface BoardService {
 
 	int remove(int bno);
 
-	List<BoardVO> mylist(String writer);
-
 	BoardVO detail1(int bno);
+
+	int total(PagingVO pgvo);
+
+	List<BoardVO> PageList(PagingVO pgvo);
 
 }
