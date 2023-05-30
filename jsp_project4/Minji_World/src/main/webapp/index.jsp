@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- CSS only -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
 	crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -20,14 +18,14 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${ses.mId ne null }">
+		<c:when test="${ses.id ne null }">
 			<nav class="navbar">
 				<div class="container-fluid">
-					<a class="navbar-brand" href="/">Hello ${ses.mId } Bunnies♥</a>
+					<a class="navbar-brand" href="/">Hello ${ses.id } Bunnies♥</a>
 					<ul class="nav justify-content-end">
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="/brd/list">Bunnies Board</a></li>
-						<li class="nav-item"><a class="nav-link" href="/mem/list">Bunnies List</a></li>
+						<li class="nav-item"><a class="nav-link" href="/brd/page">Bunnies List</a></li>
 						<li class="nav-item"><a class="nav-link" href="/mem/modify">Bunnies edit</a></li>
 						<li class="nav-item"><a class="nav-link" href="/mem/logout">logout</a>
 						</li>
@@ -44,7 +42,7 @@
 			<br>
 
 		</c:when>
-		<c:when test="${ses.mId eq null }">
+		<c:when test="${ses.id eq null }">
 			<div>
 				<img alt="/image/로고.jpg" src="/image/로고.jpg"
 					style="display: block; margin: 0px auto; width: 300px">

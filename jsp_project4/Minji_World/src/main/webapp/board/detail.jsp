@@ -25,17 +25,17 @@
 		<tbody>
 			<tr>
 				<th>글번호</th>
-				<td>${bvo.bNum }</td>
+				<td>${bvo.bno }</td>
 				<th>제목</th>
-				<td>${bvo.bTitle }</td>
+				<td>${bvo.title }</td>
 			</tr>
 			<tr >
 				<th style="width: 60px">작성자</th>
-				<td>${bvo.bWriter}</td>
+				<td>${bvo.writer}</td>
 				<th>작성일</th>
 				<td>${bvo.reg_date }</td>
 				<th>조회수</th>
-				<td>${bvo.bCount }</td>
+				<td>${bvo.read_count }</td>
 			</tr>
 			<tr>
 				<th>내용</th>
