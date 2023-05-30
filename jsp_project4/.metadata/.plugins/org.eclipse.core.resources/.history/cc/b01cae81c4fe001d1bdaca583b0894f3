@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table class="table">
+		<thead>
+			<h1>D-DAY</h1>
+		</thead>
+		<tbody>
+			<tr>
+				<td>글번호</td>
+				<td>${bvo.bNum }</td>
+				<td>제목</td>
+				<td>${bvo.bTitle }</td>
+			</tr>
+			<tr >
+				<td>작성자</td>
+				<td>${bvo.bWriter}</td>
+				<td>작성일</td>
+				<td>${bvo.reg_date }</td>
+				<td>조회수</td>
+				<td>${bvo.bCount }</td>
+			</tr>
+			<tr>
+				<td>내용</td>
+				<td colspan="10">${bvo.bContent }</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

@@ -1,0 +1,25 @@
+package domain;
+
+public class MemberVO {
+
+/*
+create table member(
+mId varchar(100) not null,
+mPassword varchar(100) not null,
+mPhone varchar(50) not null,
+mBirth int,
+reg_date datetime default now(),
+last_login datetime,
+Primary key(mId));
+*/
+	
+	private String mId;
+	private String mPassword;
+	private String mPhone;
+	private int mBirth;
+	private String reg_date;
+	private String last_login;
+	
+	
+	
+}
