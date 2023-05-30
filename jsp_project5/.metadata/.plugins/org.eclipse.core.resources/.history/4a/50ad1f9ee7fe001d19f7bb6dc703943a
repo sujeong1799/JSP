@@ -1,0 +1,23 @@
+package domain;
+
+public class CommentVO {
+/*
+create table comment(
+cNum int not null auto_increment,
+bNum int default 0,
+cContent varchar(500) not null,
+cWriter varchar(100) not null default "버니즈",
+reg_date datetime default now(),
+Primary key(cNum));
+*/
+	
+	private int cNum;
+	private int bNum;
+	private String cContent;
+	private String cWriter;
+	private String reg_date;
+	
+	// 생성자
+	public CommentVO() {}
+	
+}

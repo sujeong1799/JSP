@@ -1,0 +1,45 @@
+package domain;
+
+public class CommentVO {
+/*
+create table comment(
+cNum int not null auto_increment,
+bNum int default 0,
+cContent varchar(500) not null,
+cWriter varchar(100) not null default "버니즈",
+reg_date datetime default now(),
+Primary key(cNum));
+*/
+	
+	private int cNum;
+	private int bNum;
+	private String cWriter;
+	private String cContent;
+	private String reg_date;
+	
+	// 생성자
+	public CommentVO() {}
+
+	// 댓글 생성 생성자 bNum, cWriter, cContent
+	public CommentVO(int bNum, String cWriter, String cContent) {
+
+		this.bNum = bNum;
+		this.cWriter = cWriter;
+		this.cContent = cContent;
+	}
+
+	public CommentVO(String cWriter, String cContent, int cNum) {
+
+		this.cWriter = cWriter;
+		this.cContent = cContent;
+		this.cNum = cNum;
+	}
+	
+	// 댓글 수정 생성자 cWriter, cContent, cNum
+	
+	
+	// 전체 리스트
+	
+	
+	
+}

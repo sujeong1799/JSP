@@ -1,0 +1,31 @@
+package service;
+
+import domain.CommentVO;
+
+public class CommentServiceImpl implements CommentService {
+
+	@Override
+	public int post(CommentVO cvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public java.util.List<CommentVO> List(int bNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int remove(int cNum) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int modify(CommentVO cvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,98 @@
+package domain;
+
+public class CommentVO {
+/*
+create table comment(
+cNum int not null auto_increment,
+bNum int default 0,
+cContent varchar(500) not null,
+cWriter varchar(100) not null default "버니즈",
+reg_date datetime default now(),
+Primary key(cNum));
+*/
+	
+	private int cNum;
+	private int bNum;
+	private String cWriter;
+	private String cContent;
+	private String reg_date;
+	
+	// 생성자
+	public CommentVO() {}
+
+	// 댓글 생성 생성자 bNum, cWriter, cContent
+	public CommentVO(int bNum, String cWriter, String cContent) {
+
+		this.bNum = bNum;
+		this.cWriter = cWriter;
+		this.cContent = cContent;
+	}
+
+	
+	// 댓글 수정 생성자 cWriter, cContent, cNum
+	public CommentVO(String cWriter, String cContent, int cNum) {
+		
+		this.cWriter = cWriter;
+		this.cContent = cContent;
+		this.cNum = cNum;
+	}
+
+	
+	// 전체 리스트
+	public CommentVO(int cNum, int bNum, String cWriter, String cContent, String reg_date) {
+		this.cNum = cNum;
+		this.bNum = bNum;
+		this.cWriter = cWriter;
+		this.cContent = cContent;
+		this.reg_date = reg_date;
+	}
+
+	// getter / setter 
+	
+	public int getcNum() {
+		return cNum;
+	}
+
+	public void setcNum(int cNum) {
+		this.cNum = cNum;
+	}
+
+	public int getbNum() {
+		return bNum;
+	}
+
+	public void setbNum(int bNum) {
+		this.bNum = bNum;
+	}
+
+	public String getcWriter() {
+		return cWriter;
+	}
+
+	public void setcWriter(String cWriter) {
+		this.cWriter = cWriter;
+	}
+
+	public String getcContent() {
+		return cContent;
+	}
+
+	public void setcContent(String cContent) {
+		this.cContent = cContent;
+	}
+
+	public String getReg_date() {
+		return reg_date;
+	}
+
+	public void setReg_date(String reg_date) {
+		this.reg_date = reg_date;
+	}
+
+	@Override
+	public String toString() {
+		return "CommentVO [cNum=" + cNum + ", bNum=" + bNum + ", cWriter=" + cWriter + ", cContent=" + cContent
+				+ ", reg_date=" + reg_date + "]";
+	}
+	
+}

@@ -1,0 +1,186 @@
+package controller;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import domain.CommentVO;
+import service.CommentService;
+import service.CommentServiceImpl;
+
+@WebServlet("/cmt/*")
+public class CommentController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private static final Logger log = LoggerFactory.getLogger(CommentController.class);
+	private int isOk; // 잘되는지 한번 보려고
+	private CommentService csv;
+
+	public CommentController() {
+		csv = new CommentServiceImpl();
+	}
+
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+
+		String uri = request.getRequestURI(); // 전체 요청경로
+		log.info(">>> uri >" + uri);
+
+		String pathUri = uri.substring("/cmt/".length());
+		String path = pathUri;
+		String pathVar = "";
+		
+		if (pathUri.contains("/")) { 
+			path = pathUri.substring(0, pathUri.lastIndexOf("/"));
+			pathVar = pathUri.substring(pathUri.lastIndexOf("/") + 1);
+			log.info(path);
+			log.info(pathVar);
+
+			switch (path) {
+			case "post":
+				try {
+
+					StringBuffer sb = new StringBuffer();
+					String line = "";
+					BufferedReader br = request.getReader();
+					while((line = br.readLine()) != null) {
+						sb.append(line);
+					}
+					log.info(">>> sb : "+ sb.toString());
+					
+
+					JSONParser parser = new JSONParser();
+					JSONObject jsonObj = (JSONObject)parser.parse(sb.toString());
+					
+					
+					int bNum = Integer.parseInt(jsonObj.get("bNum").toString());
+					String cWriter = jsonObj.get("cWriter").toString();
+					String cContent = jsonObj.get("cContent").toString();
+					CommentVO cvo = new CommentVO(bNum, cWriter, cContent);
+					isOk = csv.post(cvo);
+					log.info(">>> post : "+ (isOk > 0 ? "성공":"실패"));
+					
+					// 결과 전송
+					PrintWriter out = response.getWriter();
+					out.print(isOk);
+					
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
+				
+			case "list":
+				try {
+					int bNum = Integer.parseInt(pathVar); 
+					log.info("bNum > "+bNum);
+		    		
+					List<CommentVO> list = csv.List(bNum);
+					log.info(">>> Comment List > DB Ok");
+					
+					JSONObject[] jsonObjArr = new JSONObject[list.size()];
+					JSONArray jsonObjList = new JSONArray();
+					for(int i=0; i<list.size(); i++) {
+						jsonObjArr[i] = new JSONObject(); 
+						jsonObjArr[i].put("cNum", list.get(i).getcNum());
+						jsonObjArr[i].put("bNum", list.get(i).getbNum());
+						jsonObjArr[i].put("cWriter", list.get(i).getcWriter());
+						jsonObjArr[i].put("cContent", list.get(i).getcContent());
+						jsonObjArr[i].put("reg_date", list.get(i).getReg_date());
+						
+						jsonObjList.add(jsonObjArr[i]);
+						
+					}
+					log.info(">>> jsonObjList >" + jsonObjList);
+					
+					String jsonData = jsonObjList.toJSONString();
+					log.info(">>> jsonData > "+jsonData);
+					
+					PrintWriter out = response.getWriter();
+					out.print(jsonData);
+					
+					
+				} catch (Exception e) {
+					log.info(">>> comment list > error");
+					e.printStackTrace();
+				}
+				break;
+				
+			case "remove":
+				try {
+					int cNum = Integer.parseInt(request.getParameter("cnoVal"));
+					log.info(">>> cNum > "+cNum);
+					
+					isOk = csv.remove(cNum);
+					log.info("remove > "+(isOk > 0 ? "성공":"실패"));
+					PrintWriter out = response.getWriter();
+					out.print(isOk);
+					
+				} catch (Exception e) {
+					log.info("remove error");
+					e.printStackTrace();
+				}
+				
+				break;
+			case "modify":
+				try {
+					StringBuffer sb = new StringBuffer();
+					String line = "";
+					BufferedReader br = request.getReader();
+					while((line = br.readLine()) != null) {
+						sb.append(line);
+					}
+					log.info(">>> sb : "+ sb.toString()); 
+					
+
+					JSONParser parser = new JSONParser();
+					JSONObject jsonObj = (JSONObject)parser.parse(sb.toString());
+					
+					
+					int cNum = Integer.parseInt(jsonObj.get("cNum").toString());
+					String cWriter = jsonObj.get("cWriter").toString();
+					String cContent = jsonObj.get("cContent").toString();
+					CommentVO cvo = new CommentVO(cWriter, cContent, cNum);
+					isOk = csv.modify(cvo);
+					log.info(">>> modify > "+ (isOk > 0 ? "성공":"실패"));
+					
+					// 결과 전송
+					PrintWriter out = response.getWriter();
+					out.print(isOk);
+					
+				} catch (Exception e) {
+					log.info("modify error");
+					e.printStackTrace();
+				}
+				break;
+			}
+		}
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		service(request, response);
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		service(request, response);
+
+	}
+
+}

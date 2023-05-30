@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Board Modify Page</title>
+</head>
+<body>
+<h1>Board Modify Page</h1>
+<div style="width: 800px; margin: auto;">
+	<table class="table">
+		<thead class="table-group-divider">
+			<h1>글 수정하는 중</h1>
+		</thead>
+		<tbody>
+			<tr>
+				<th>글번호</th>
+				<td><input type="text" name="bNum" value="${bvo.bNum }" readonly="readonly"></td>
+				<th>제목</th>
+				<td><input type="text" name="bTitle" value="${bvo.bTitle }"></td>
+			</tr>
+			<tr >
+				<th>작성자</th>
+				<td><input type="text" name="bWriter" value="${bvo.bWriter}" readonly="readonly"></td>
+				<th>작성일</th>
+				<td><input type="text" name="reg_date" value="${bvo.reg_date }" readonly="readonly"></td>
+				<th>조회수</th>
+				<td>${bvo.bCount }</td>
+			</tr>
+			<tr>
+			</tr>
+				<td><textarea rows="" cols="30" name="bContent">$${bvo.bContent }</textarea></td>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
