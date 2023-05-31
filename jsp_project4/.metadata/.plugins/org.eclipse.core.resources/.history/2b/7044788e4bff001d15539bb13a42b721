@@ -1,0 +1,33 @@
+use mysql;
+
+create user 'javauser'@'localhost' identified by 'mysql';
+grant all privileges on newjeansdb.* to 'javauser'@'localhost' with grant option;
+flush privileges;
+
+-- 2023-05-30
+
+create table member(
+id varchar(100) not null,
+password varchar(100) not null,
+phone varchar(100) not null,
+birth int,
+reg_date datetime default now(),
+last_login datetime,
+Primary key(id));
+
+create table board(
+bno int not null auto_increment,
+title varchar(100) not null,
+writer varchar(100) not null,
+content text,
+read_count int default 0,
+reg_date datetime default now(),
+primary key(bno));
+
+Create table comment(
+cno int not null auto_increment,
+bno int default 0,
+writer varchar(100)default "버니즈",
+content varchar(300) not null,
+reg_date datetime default now(),
+Primary key(cno));

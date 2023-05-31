@@ -1,0 +1,10 @@
+package orm;
+
+import org.slf4j.LoggerFactory;
+
+public class DatabaseBuilder {
+
+	private static Logger log = LoggerFactory.getLogger(DatabaseBuilder.class);
+	private static SqlSesstionFactory factory;
+	private static final String config ="orm/MybatisConfig.xml";
+}

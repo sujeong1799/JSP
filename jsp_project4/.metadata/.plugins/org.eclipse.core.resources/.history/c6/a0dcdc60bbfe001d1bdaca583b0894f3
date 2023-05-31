@@ -1,0 +1,18 @@
+package service;
+
+import domain.BoardVO;
+
+public class BoardServiceImpl implements BoardService {
+	private static final Logger log = LoggerFactory.getLogger(BoardServiceImpl.class);
+	private BoardDAO bdao;
+	
+	public BoardServiceImpl() {
+		bdao = new BoardDAOImpl();
+	}
+	@Override
+	public int insert(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,108 @@
+package controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import domain.BoardVO;
+import domain.MemberVO;
+import service.BoardService;
+import service.BoardServiceImpl;
+
+
+@WebServlet("/brd/*")
+public class BoardController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+	private static final Logger log = LoggerFactory.getLogger(BoardController.class);
+	private RequestDispatcher rdp; // 웹의 목적지 주소로 객체를 전달해주는 객체
+	private String destPage; // 목적지 주소를 저장해주는 변수
+	private int isOk; // db의 insert, update, delete의 결과를 받는 변수
+	private BoardService bsv; // 인터페이스 만들기
+	
+    public BoardController() {
+    	bsv = new BoardServiceImpl(); // 클래스만들기
+
+    }
+
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//캐릭터 인코딩 설정, 컨텐츠 타입 설정
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		String uri = request.getRequestURI();
+		log.info(">>> uri > " + uri);
+		String path = uri.substring(uri.lastIndexOf("/")+1);
+		log.info(">>> path > " + path);
+		
+		switch(path) {
+		case "insert":
+			try {
+				String title = request.getParameter("title");
+				String writer = request.getParameter("writer");
+				String content = request.getParameter("content");
+				BoardVO bvo = new BoardVO(title, writer, content);
+				isOk = bsv.insert(bvo);
+				log.info(">>> 글 등록 > " + (isOk > 0 ? "성공" : "실패"));
+				destPage="/";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+			
+		case "list":
+			try {
+				List<BoardVO> list = new ArrayList<BoardVO>();
+				list = bsv.list();
+				log.info(">>> list.size"+list.size());
+				log.info(">>> list"+list);
+				request.setAttribute("list", list);
+				log.info(">>> list 출력 완료");
+				
+				destPage = "/board/list.jsp";
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			break;
+			
+		case "detail":
+			try {
+				int bno = Integer.parseInt(request.getParameter("bno")); // getParameter는 String이니까 parseInt해줘야함
+				BoardVO bvo = new BoardVO();
+				bvo = bsv.detail(bvo);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			break;
+		}
+		
+		rdp=request.getRequestDispatcher(destPage);
+		rdp.forward(request, response);
+		
+	}
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		service(request, response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		service(request, response);
+	}
+
+}

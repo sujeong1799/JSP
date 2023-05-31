@@ -1,0 +1,28 @@
+package repository;
+
+import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import domain.CommentVO;
+import orm.DatabaseBuilder;
+
+public class CommentDAOImpl implements CommentDAO {
+	private static final Logger log = LoggerFactory.getLogger(CommentDAOImpl.class);
+	private SqlSession sql;
+	// NameSpace = SQL이 mapper를 구분하기 위한 이름
+	// NameSpace.SQL구문이름
+	private String CS = "CommentMapper.";
+	
+	public CommentDAOImpl() {
+		new DatabaseBuilder();
+		sql = DatabaseBuilder.getFactory().openSession(); // sql연결이라고하네여
+	}
+	
+	
+	@Override
+	public int post(CommentVO cvo) {
+		return 0;
+	}
+
+}

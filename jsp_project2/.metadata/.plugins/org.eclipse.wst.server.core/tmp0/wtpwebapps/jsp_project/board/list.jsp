@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글 목록 리스트</title>
+</head>
+<body>
+
+<h1 align="center">글 목록 리스트 입니다.</h1>
+<table class="table table-striped">
+
+		<thead>
+			<tr align="center">
+				<th>글번호</th>
+				<th>글제목</th>
+				<th>글쓴이</th>
+				<th>조회수</th>
+				<th>글작성시간</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${list }" var="bvo">
+				<tr align="center">
+					<td>${bvo.bno }</a></td>
+					<td><a href="/brd/detail?bno=${bvo.bno }">${bvo.title }</td>
+					<td>${bvo.writer }</td>
+					<td>${bvo.count }</td>
+					<td>${bvo.reg_date }</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	
+	<div align="center">
+	<a href="/board/register.jsp"><button>게시글작성</button></a>
+	<a href="/"><button>메인가기</button></a>
+	</div>
+	
+	<!-- 페이지네이션위치 -->
+	<!-- 컨트롤러에서 page 정보를 싣고 와야함. -->
+	<!-- startpage부터 endPage까지 숫자 반복 forEach사용-->
+	<!-- pgh는 내가 알아서 정하는거임 p만해도 되고 맘대루하삼 -->
+	
+	<!-- 이전페이지 -->
+	<div align="center">
+	<c:if test="${pgh.prev }">
+	<a href="/brd/page?pageNo=${pgh.startPage-1 }&qty=${pgh.pgvo.qty}"> 이전 </a>
+	</c:if>
+	
+	<c:forEach begin="${pgh.startPage }" end="${pgh.endPage }" var="i">
+	<!-- 현재 페이지 넘버를 싣고 갈거임 --> <!-- pgh.pgvo.qty 이거는 변경가능함... -->
+	<a href="/brd/page?pageNo=${i }&qty=${pgh.pgvo.qty}">${i } | </a>
+	</c:forEach>
+
+	<!-- 다음페이지 -->	
+	<c:if test="${pgh.next }">
+	<a href="/brd/page?pageNo=${pgh.endPage+1 }&qty=${pgh.pgvo.qty}"> 다음 </a>
+	</c:if>
+	</div>
+</body>
+</html>

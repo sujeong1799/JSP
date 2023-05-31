@@ -1,0 +1,71 @@
+package controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import service.CommentService;
+import service.CommentServiceImpl;
+
+
+@WebServlet("/cmt/*")
+public class CommentController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       private static final Logger log = LoggerFactory.getLogger(CommentController.class);
+       // 목적지 주소로 보내는 destPage 쓰지않음.
+       // 비동기 통신으로 요청이 온 곳으로 돌려보냄
+       private int isOk; // 잘되는지 한번 보려고
+       private CommentService csv;
+       
+
+    public CommentController() {
+        csv = new CommentServiceImpl();
+
+    }
+
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	      request.setCharacterEncoding("utf-8");
+	      response.setCharacterEncoding("utf-8"); 
+	      // contentType은 사용하지 않음.
+//	      response.setContentType("text/html; charset=utf-8"); 
+	      
+	      
+	      // 전에는 brd/list, brd/register?bno=1 로 달고 왔는데 댓글은 다름
+	      // cmt/post/1, cmt/modify/1 이런식으로 함 왜 이럴까? < 이 방식은 REST API방식임 
+	      String uri = request.getRequestURI();
+	      log.info(uri);
+	      
+	      // 앞에있는 기능
+	      String pathUri = uri.substring("/cmt/".length()); // length만큼 가져온다.
+	      String path = pathUri;
+	      
+	      // 뒤에있는 숫자
+	      String pathVar = ""; 
+	      log.info(pathVar);
+	      log.info(path);
+	      
+	      switch(path) {
+	      
+	      }
+	}
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		service(request, response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		service(request, response);
+	}
+
+}

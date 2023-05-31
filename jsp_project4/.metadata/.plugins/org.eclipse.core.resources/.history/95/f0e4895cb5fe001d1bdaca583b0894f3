@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table class="table">
+  <thead>
+  </thead>
+  <tbody class="table-group-divider">
+      <tr>
+      <th scope="col">아이디</th>
+      <td></td>
+   	</tr>
+    <tr>
+      <th scope="col">비밀번호</th>
+      <td></td>
+   	</tr>
+    <tr>
+      <th scope="col">전화번호</th>
+      <td></td>
+   	</tr>
+    <tr>
+      <th scope="col">생년월일</th>
+      <td></td>
+   	</tr>
+	<tr>
+      <th scope="col">버니즈가입일</th>
+      <td></td>
+   	</tr>
+    <tr>
+      <th scope="col">마지막로그인</th>
+      <td></td>
+   	</tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,14 @@
+package domain;
+
+public class BoardVO {
+/*
+create table board(
+bNum int not null auto_increment,
+bTitle varchar(100) not null,
+bWriter varchar(100) not null,
+bContent text not null,
+bCount int default 0,
+reg_date datetime default now(),
+Primary key(bNum));
+*/
+}

@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<br>
+	<div align="center">
+		<form action="/mem/login_auth">
+			<div
+				style="display: inline; background-color: gray; border: 5px solid gray;">
+				아이디</div>
+			<input type="text" placeholder="아이디를 입력해주세요." style="width: 200px">
+			<br> <br>
+			<div style="display: inline;">비밀번호</div>
+			<input type="text" placeholder="비밀번호를 입력해주세요." syle="width: 200px"><br>
+			<button type="submit">login</button>
+		</form>
+	</div>
+</body>
+</html>

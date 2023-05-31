@@ -1,0 +1,36 @@
+//화면에서 등록한 댓글 내용을 컨트롤러로 전송 -> DB 저장
+// function에 async 붙인건 비동기함수라는 뜻임.
+async function postCommentToServer(cmtData){
+	try{
+		/*url뒤에 config 붙여서 보내줄거야*/
+		const url = "/cmt/post";
+		const config={
+			method:'post',
+			headers:{
+				'content-Type':'application/json; charset=utf-8'
+			},
+			body: JSON.stringify(cmtData)
+		};
+		/* 응답 받고자 하는 데이터 */
+		const resp = await fetch(url, config);
+	}catch(error){
+		console.log(error);
+	}
+	
+}
+
+// 미리 보낼 데이터를 만들어서 함수로 전달 cmtData
+document.getElementById('cmtAddBtn').addEventListener('click', ()=>{
+	const cmtText = document.getElementById('cmtText').value;
+	console.log(cmtText);
+	if(cmtText == null || cmtText == ""){
+		alert('댓글을 입력해주세요');
+		return false;
+	}else{
+		let cmtData = {
+			bno : bnoVal,
+			writer : document.getElementById('cmtWriter').value,
+			content : cmtText
+		};
+	}
+})

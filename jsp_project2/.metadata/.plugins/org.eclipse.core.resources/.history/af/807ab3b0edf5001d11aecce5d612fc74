@@ -1,0 +1,13 @@
+// 화면에서 등록한 댓글 내용을 컨트롤러로 전송 -> DB 저장
+async function postCommentToServer(cmtData){
+	
+}
+
+// 미리 보낼 데이터를 만들어서 함수로 전달 cmtData
+document.getElementById('cmtAddBtn').addEventListener('click', ()=>{
+	const cmtText = document.getElementById('cmtText').value;
+	console.log(cmtText);
+	if(cmtText == null) || cmtText == ""){
+		alert('댓글을 입력해주세요');
+	}
+})

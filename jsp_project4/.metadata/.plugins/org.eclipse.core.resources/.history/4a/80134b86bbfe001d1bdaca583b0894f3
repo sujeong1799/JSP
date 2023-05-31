@@ -1,0 +1,21 @@
+package repository;
+
+import domain.BoardVO;
+
+public class BoardDAOImpl implements BoardDAO {
+	private static final Logger log = LoggerFactory.getLogger(BoardDAOImpl.class);
+	private SqlSession sql;
+	private String BS = "BoardMapper.";
+	
+	public BoardDAOImpl() {
+		new DatabaseBuilder();
+		sql = DatabaseBuilder.getFactory().openSession(); // sql연결
+	}
+
+	@Override
+	public int insert(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

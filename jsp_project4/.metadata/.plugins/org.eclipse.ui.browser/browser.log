@@ -1,0 +1,16 @@
+
+5월 30, 2023 17:43:41.706 NEW SESSION
+5월 30, 2023 17:43:41.706 [13116:13212:0530/174341.706:ERROR:interface_endpoint_client.cc(696)] Message 1 rejected by interface blink.mojom.WidgetHost
+
+5월 31, 2023 10:09:37.134 NEW SESSION
+5월 31, 2023 10:09:37.134 [libprotobuf ERROR ..\..\third_party\protobuf\src\google\protobuf\message_lite.cc:133] Can't parse message of type "safe_browsing.ClientDownloadRequest" because it is missing required fields: (cannot determine missing fields for lite message)
+5월 31, 2023 10:16:49.799 [6732:7868:0531/101649.798:ERROR:device_event_log_impl.cc(222)] [10:16:49.799] Bluetooth: bluetooth_adapter_winrt.cc:1058 Getting Default Adapter failed.
+5월 31, 2023 10:17:42.705 [6732:7868:0531/101742.705:ERROR:interface_endpoint_client.cc(696)] Message 0 rejected by interface blink.mojom.WidgetHost
+5월 31, 2023 10:17:49.656 [libprotobuf ERROR ..\..\third_party\protobuf\src\google\protobuf\message_lite.cc:133] Can't parse message of type "safe_browsing.ClientDownloadRequest" because it is missing required fields: (cannot determine missing fields for lite message)
+5월 31, 2023 10:47:10.486 [1436:12848:0531/104710.486:ERROR:interface_endpoint_client.cc(696)] Message 1 rejected by interface blink.mojom.WidgetHost
+5월 31, 2023 10:47:10.486 [1436:12848:0531/104710.486:ERROR:interface_endpoint_client.cc(696)] Message 1 rejected by interface blink.mojom.WidgetHost
+
+5월 31, 2023 15:10:17.328 NEW SESSION
+5월 31, 2023 15:10:17.329 [12576:11240:0531/151017.328:ERROR:sharing_service.cc(252)] Device un-registration failed with fatal error
+5월 31, 2023 15:56:52.553 [libprotobuf ERROR ..\..\third_party\protobuf\src\google\protobuf\message_lite.cc:133] Can't parse message of type "safe_browsing.ClientDownloadRequest" because it is missing required fields: (cannot determine missing fields for lite message)
+5월 31, 2023 15:57:00.216 [libprotobuf ERROR ..\..\third_party\protobuf\src\google\protobuf\message_lite.cc:133] Can't parse message of type "safe_browsing.ClientDownloadRequest" because it is missing required fields: (cannot determine missing fields for lite message)
