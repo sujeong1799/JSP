@@ -6,14 +6,16 @@ import domain.MemberVO;
 
 public interface MemberService {
 
-	MemberVO login(MemberVO mvo);
-
 	int register(MemberVO mvo);
 
-	int logout(String mId);
+	MemberVO login(MemberVO mvo);
+
+	int logout(String id);
 
 	List<MemberVO> list();
 
 	int edit(MemberVO mvo);
+
+
 
 }

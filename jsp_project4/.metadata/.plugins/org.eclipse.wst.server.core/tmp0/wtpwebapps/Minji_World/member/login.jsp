@@ -6,29 +6,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인</title>
 </head>
-<body>
+<body style="background-image: url('/image/배경화면.png'); background-repeat: no-repeat; background-size: cover;">
 	<br>
-	<div align="center">
+	<div align="center" style="background-color: white; width: 400px; height: 300px; border-radius: 20px; margin: 150px auto;">
 		<form action="/mem/login_auth" method="post">
 			<div style="width: 350px; height: 150px">
 					<div class="input-group mb-3" style="margin-top: 20px">
-						<span class="input-group-text" id="inputGroup-sizing-default">아이디</span>
-						<input type="text" name="mId" class="form-control"
+						<input type="text" name="id" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-default"
-							placeholder="아이디를 입력해주세요.">
+							placeholder="아이디를 입력해주세요." style="margin-top: 40px">
 					</div>
 					<div class="input-group mb-3" style="margin-top: 20px">
-						<span class="input-group-text" id="inputGroup-sizing-default">비밀번호</span>
-						<input type="password" name="mPassword" class="form-control"
+						<input type="password" name="password" class="form-control"
 							aria-label="Sizing example input"
 							aria-describedby="inputGroup-sizing-default"
-							placeholder="비밀번호를 입력해주세요.">
+							placeholder="비밀번호를 입력해주세요." style="margin-top: 20px">
 					</div>
 					<br>
-					<button type="submit">login</button>
+					<button type="submit" class="btn btn-outline-primary">로그인</button>
 			</div>
 		</form>
 	</div>

@@ -3,98 +3,135 @@ package domain;
 public class BoardVO {
 /*
 create table board(
-bNum int not null auto_increment,
-bTitle varchar(100) not null,
-bWriter varchar(100) not null,
-bContent text not null,
-bCount int default 0,
+bno int not null auto_increment,
+title varchar(100) not null,
+writer varchar(100) not null,
+content text,
+read_count int default 0,
 reg_date datetime default now(),
-Primary key(bNum));
+primary key(bno));
 */
 	
-	private int bNum;
-	private String bTitle;
-	private String bWriter;
-	private String bContent;
-	private int bCount;
+	private int bno;
+	private String title;
+	private String writer;
+	private String content;
+	private int read_count;
 	private String reg_date;
+	private String image_file;
+
 	
-	//생성자
-	
+	// 생성자
 	public BoardVO() {}
 
-	// 글 등록 생성자 bTitle, bWriter, bContent
-	public BoardVO(String bTitle, String bWriter, String bContent) {
-		this.bTitle = bTitle;
-		this.bWriter = bWriter;
-		this.bContent = bContent;
-	}
-
-	// 글 리스트 생성자 bNum, bTitle, bWriter, bCount, reg_date
-	public BoardVO(int bNum, String bTitle, String bWriter, int bCount, String reg_date) {
-		this.bNum = bNum;
-		this.bTitle = bTitle;
-		this.bWriter = bWriter;
-		this.bCount = bCount;
-		this.reg_date = reg_date;
-	}
-
-	// 글 상세보기 생성자 bNum, bTitle, bWriter, bContent, bCount, reg_date 
-	public BoardVO(int bNum, String bTitle, String bWriter, String bContent, int bCount, String reg_date) {
-		this.bNum = bNum;
-		this.bTitle = bTitle;
-		this.bWriter = bWriter;
-		this.bContent = bContent;
-		this.bCount = bCount;
-		this.reg_date = reg_date;
-	}	
 	
-	// 글 수정 생성자 bNum, bTitle, bContent
-	public BoardVO(int bNum, String bTitle, String bContent) {
-		this.bNum = bNum;
-		this.bTitle = bTitle;
-		this.bContent = bContent;
+	public BoardVO(int bno) {
+		this.bno = bno;
+	}
+	
+	public BoardVO(String writer) {
+		this.writer = writer;
+	}
+	
+	// 글쓰기 생성자
+	public BoardVO(String title, String writer, String content, String image_file ) {
+		super();
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
+		this.image_file = image_file;
+	}
+	
+	// 리스트 생성자
+	public BoardVO(int bno, String title, String writer, int read_count, String reg_date, String image_file) {
+		this.bno = bno;
+		this.title = title;
+		this.writer = writer;
+		this.read_count = read_count;
+		this.reg_date = reg_date;
+		this.image_file = image_file;
 	}
 
-	public int getbNum() {
-		return bNum;
+
+	// 글 상세보기 생성자 전체
+	public BoardVO(int bno, String title, String writer, String content, int read_count, String reg_date) {
+		this.bno = bno;
+		this.title = title;
+		this.writer = writer;
+		this.content = content;
+		this.read_count = read_count;
+		this.reg_date = reg_date;
 	}
 
-	public void setbNum(int bNum) {
-		this.bNum = bNum;
+	// 글수정 생성자 bno, title, content
+	public BoardVO(int bno, String title, String content) {
+		super();
+		this.bno = bno;
+		this.title = title;
+		this.content = content;
 	}
 
-	public String getbTitle() {
-		return bTitle;
+
+
+	public int getBno() {
+		return bno;
 	}
 
-	public void setbTitle(String bTitle) {
-		this.bTitle = bTitle;
+
+
+	public void setBno(int bno) {
+		this.bno = bno;
 	}
 
-	public String getbWriter() {
-		return bWriter;
+
+
+	public String getTitle() {
+		return title;
 	}
 
-	public void setbWriter(String bWriter) {
-		this.bWriter = bWriter;
+
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getbContent() {
-		return bContent;
+
+
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setbContent(String bContent) {
-		this.bContent = bContent;
+
+
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
-	public int getbCount() {
-		return bCount;
+
+
+	public String getContent() {
+		return content;
 	}
 
-	public void setbCount(int bCount) {
-		this.bCount = bCount;
+
+
+	public void setContent(String content) {
+		this.content = content;
 	}
+
+
+
+	public int getRead_count() {
+		return read_count;
+	}
+
+
+
+	public void setRead_count(int read_count) {
+		this.read_count = read_count;
+	}
+
+
 
 	public String getReg_date() {
 		return reg_date;
@@ -104,19 +141,21 @@ Primary key(bNum));
 		this.reg_date = reg_date;
 	}
 	
-	
+	public String getImage_file() {
+		return image_file;
+	}
 
+	public void setImage_file(String image_file) {
+		this.image_file = image_file;
+	}
+
+
+	// toString
 	@Override
 	public String toString() {
-		return "BoardVO [bNum=" + bNum + ", bTitle=" + bTitle + ", bWriter=" + bWriter + ", bContent=" + bContent
-				+ ", bCount=" + bCount + ", reg_date=" + reg_date + "]";
+		return "BoardVO [bno=" + bno + ", title=" + title + ", writer=" + writer + ", content=" + content
+				+ ", read_count=" + read_count + ", reg_date=" + reg_date +", image_file=" + image_file +   "]";
 	}
 	
 	
-	
-	
-	
-	
-	
-
 }

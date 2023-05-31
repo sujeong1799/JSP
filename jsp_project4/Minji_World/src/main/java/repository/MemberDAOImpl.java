@@ -10,27 +10,20 @@ import domain.MemberVO;
 import orm.DatabaseBuilder;
 
 public class MemberDAOImpl implements MemberDAO {
-
+	
 	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
 	private SqlSession sql;
 	private String NS = "MemberMapper.";
-	private int isOk;
-
+	
 	public MemberDAOImpl() {
 		new DatabaseBuilder();
-		sql = DatabaseBuilder.getFactory().openSession();
-	}
-	
-	@Override
-	public MemberVO login(MemberVO mvo) {
-		log.info(">>> login DAO 진입");
-		return sql.selectOne(NS+"log", mvo);
+		sql = DatabaseBuilder.getFactory().openSession(); // sql연결
 	}
 
 	@Override
-	public int register(MemberVO mvo) {
-		log.info(">>> register DAO 진입");
-		isOk = sql.insert(NS+"reg", mvo);
+	public int insert(MemberVO mvo) {
+		log.info(">>> insert DAO 진입");
+		int isOk = sql.insert(NS+"reg", mvo);
 		if(isOk > 0) {
 			sql.commit();
 		}
@@ -38,9 +31,15 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int logout(String mId) {
+	public MemberVO login(MemberVO mvo) {
+		log.info(">>> login DAO 진입");
+		return sql.selectOne(NS+"log", mvo);
+	}
+
+	@Override
+	public int logout(String id) {
 		log.info(">>> logout DAO 진입");
-		isOk = sql.update(NS+"logout", mId);
+		int isOk = sql.update(NS+"logout", id);
 		if(isOk > 0) {
 			sql.commit();
 		}
@@ -50,18 +49,20 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<MemberVO> selectList() {
 		log.info(">>> list DAO 진입");
-		
+
 		return sql.selectList(NS+"list");
 	}
 
 	@Override
 	public int editOne(MemberVO mvo) {
 		log.info(">>> edit DAO 진입");
-		isOk = sql.update(NS+"edit", mvo);
-		if(isOk > 0 ) {
+		int isOk = sql.update(NS+"edit", mvo);
+		if(isOk > 0) {
 			sql.commit();
 		}
 		return isOk;
 	}
+
+
 
 }

@@ -9,32 +9,33 @@ import domain.MemberVO;
 import repository.MemberDAO;
 import repository.MemberDAOImpl;
 
+
 public class MemberServiceImpl implements MemberService {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
 	private MemberDAO mdao;
 	
 	public MemberServiceImpl() {
 		mdao = new MemberDAOImpl();
 	}
+	
+	@Override
+	public int register(MemberVO mvo) {
+		log.info("register service 진입!");
+		
+		return mdao.insert(mvo);
+	}
 
 	@Override
 	public MemberVO login(MemberVO mvo) {
-		log.info("login service 진입");
+		log.info("login service 진입!");
 		return mdao.login(mvo);
 	}
 
 	@Override
-	public int register(MemberVO mvo) {
-		log.info("register service 진입");
-		
-		return mdao.register(mvo);
-	}
-
-	@Override
-	public int logout(String mId) {
+	public int logout(String id) {
 		log.info("logout service 진입");
-		return mdao.logout(mId);
+		return mdao.logout(id);
 	}
 
 	@Override
@@ -48,5 +49,10 @@ public class MemberServiceImpl implements MemberService {
 		log.info("edit service 진입");
 		return mdao.editOne(mvo);
 	}
+
+
+
+
+
 
 }

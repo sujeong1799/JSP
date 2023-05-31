@@ -6,11 +6,11 @@ import domain.MemberVO;
 
 public interface MemberDAO {
 
+	int insert(MemberVO mvo);
+
 	MemberVO login(MemberVO mvo);
 
-	int register(MemberVO mvo);
-
-	int logout(String mId);
+	int logout(String id);
 
 	List<MemberVO> selectList();
 

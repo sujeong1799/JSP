@@ -1,6 +1,5 @@
 package orm;
 
-
 import java.io.IOException;
 
 import org.apache.ibatis.io.Resources;
@@ -13,19 +12,20 @@ public class DatabaseBuilder {
 
 	private static Logger log = LoggerFactory.getLogger(DatabaseBuilder.class);
 	private static SqlSessionFactory factory;
-	private static final String config = "orm/MybatisConfig.xml";
+	private static final String config ="orm/MybatisConfig.xml";
 	
 	static {
 		try {
-			factory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsReader(config));
+			factory = new SqlSessionFactoryBuilder().build(
+					Resources.getResourceAsReader(config));
 		} catch (IOException e) {
 			log.info("Mybatis 설정 오류");
 			e.printStackTrace();
+			// TODO: handle exception
 		}
 	}
 	
 	public static SqlSessionFactory getFactory() {
 		return factory;
 	}
-	
 }

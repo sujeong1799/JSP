@@ -22,158 +22,152 @@ import service.MemberServiceImpl;
 
 @WebServlet("/mem/*")
 public class MemberController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-    private static final Logger log = LoggerFactory.getLogger(MemberController.class);
-    private RequestDispatcher rdp;
-    private MemberService msv;
-    private int isOk;
-    private String destPage; // 목적지주소
-
+   private static final long serialVersionUID = 1L;
+   private static final Logger log = LoggerFactory.getLogger(MemberController.class);
+   private RequestDispatcher rdp;
+   private MemberService msv;
+   private int isOk;
+   private String destPage;
+   
+   
+  
     public MemberController() {
-    	msv = new MemberServiceImpl();
+        msv = new MemberServiceImpl();
     }
 
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		
-		String uri = request.getRequestURI(); // 전체 요청경로
-		log.info(">>> uri > " + uri);
-		
-		String path = uri.substring(uri.lastIndexOf("/")+1);
-		log.info(">>> path >" + path);
-		
-		switch(path) {
-		case "login":
-			destPage = "/member/login.jsp";
-			break;
-		
-	      case "login_auth":
-			try {
-				// 해당 아이디 db에 있는지 체크 
-				String mId = request.getParameter("mId");
-				String mPassword = request.getParameter("mPassword");
-				
-				MemberVO mvo = new MemberVO(mId, mPassword) ;
-				log.info("로그인요청 >>" + mvo.getmId()+mvo.getmPassword());
-				MemberVO loginMvo = msv.login(mvo);
-				
-				if(loginMvo != null) { // 값이 있으면
-					
-					HttpSession ses = request.getSession();
-					ses.setAttribute("ses", loginMvo);
-					ses.setMaxInactiveInterval(10*60);
-					
-				}else {
-					request.setAttribute("msg_login", 0);
-				}
-				
-			}catch (Exception e) {
-				log.info("에러낫슈");
-				e.printStackTrace();
-				
-			}
-			destPage="/";
-			break;
-			
-		case "join":
-			destPage = "/member/join.jsp";
-			break;
-		
-		case "register":
-			try {
-				String mId = request.getParameter("mId");
-				String mPassword = request.getParameter("mPassword");
-				String mPhone = request.getParameter("mPhone");
-				int mBirth = Integer.parseInt(request.getParameter("mBirth"));
-				
-				MemberVO mvo = new MemberVO(mId, mPassword, mPhone, mBirth);
-				log.info(">> register mvo >" + mvo);
-				isOk = msv.register(mvo);
-				log.info(">> 회원가입 > " + (isOk > 0 ? "성공":"실패"));
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			destPage = "/";
-			break;
-			
-		case "logout":
-			try {
-				HttpSession ses = request.getSession();
-				MemberVO mvo = (MemberVO) ses.getAttribute("ses");
-				String mId = mvo.getmId();
-				log.info(">>> login id :" +mId);
-				
-				isOk = msv.logout(mId);
-				log.info(">>> logout >"+(isOk > 0 ? "성공":"실패"));
-				
-				ses.invalidate();
-				destPage = "/";
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			break;
-			
-		case "list":
-			try {
-				List<MemberVO> list = new ArrayList<>();
-				list = msv.list();
-				request.setAttribute("list", list);
-				log.info(">>> 리스트 출력 완료");
-				destPage ="/member/list.jsp";
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			break;
-			
-		case "modify":
-				destPage ="/member/modify.jsp";
-			break;
-			
-		case "edit":
-			try {
-				String mId = request.getParameter("mId");
-				String mPassword = request.getParameter("mPassword");
-				String mPhone = request.getParameter("mPhone");
-				int mBirth = Integer.parseInt(request.getParameter("mBirth"));
-				
-				MemberVO mvo = new MemberVO(mId, mPassword, mPhone, mBirth);
-				isOk = msv.edit(mvo);
-				log.info(">>> edit > "+ (isOk > 0 ? "성공" : "실패"));
-				log.info(">>> modify 완료, session 변경시작");
-				msv.login(mvo);
-				HttpSession ses = request.getSession();
-				ses.setAttribute("ses", mvo);
-				log.info(mvo.getmId()+mvo.getmPassword());
-				log.info(">>> session 변경 완료");
-
-			destPage = "login_auth";
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			
-			break;
+   protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      request.setCharacterEncoding("utf-8");
+      response.setCharacterEncoding("utf-8"); 
+      response.setContentType("text/html; charset=utf-8");
+      
+      String uri = request.getRequestURI();
+      System.out.println(">>> uri  " + uri);
+      String path = uri.substring(uri.lastIndexOf("/")+1);
+      log.info(">>path: " +path);
+      
+      
+      switch(path) {
+      case "join":
+    	  destPage = "/member/join.jsp";
+         break;
+         
+      case "register":
+    	  try {
+    		  String id = request.getParameter("id");
+    		  String password = request.getParameter("password");
+    		  String phone = request.getParameter("phone");
+    		  int birth = Integer.parseInt(request.getParameter("birth")) ;
+    		  MemberVO mvo = new MemberVO(id,password, phone, birth);
+    		  log.info(">>>>> mvo "+mvo);
+    		  isOk = msv.register(mvo);
+    		  log.info(">>> JOIN > " + (isOk > 0 ? "성공" : "실패"));
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		
-		rdp = request.getRequestDispatcher(destPage);
-		rdp.forward(request, response);
-	}
+         destPage = "/";
+         break;
+         
+      case "login":
+    	  destPage="/member/login.jsp";
+    	  break;
+         
+      case "login_auth":
+    	  try {
+    		  String id = request.getParameter("id");
+    		  String password = request.getParameter("password");
+    		  
+    		  MemberVO mvo = new MemberVO(id, password);
+    		  log.info(">>> login 요청 " + mvo);
+    		  
+    		  MemberVO loginMvo = msv.login(mvo);
+    		  
+    		  if(loginMvo !=null) {
+    			  
+    			  HttpSession ses = request.getSession();
+    			  ses.setAttribute("ses", loginMvo);
+    			  ses.setMaxInactiveInterval(10*60);
+    		  }else {
+    			  request.setAttribute("msg_login", 0);
+    		  }
+    		  
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	  destPage="/";
+    	  break;
+    	  
+      case "logout":
+    	  try {
+    		  HttpSession ses = request.getSession();
+    		  MemberVO mvo = (MemberVO) ses.getAttribute("ses");
+    		  String id = mvo.getId();
+    		  log.info(">>> login id : "+id);
+    		  
+    		  isOk = msv.logout(id);
+    		  log.info(">>> logout > " + (isOk > 0 ? "성공":"실패"));
+    		  
+    		  ses.invalidate();
+    		  destPage="/";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	  break;
+    	  
+      case "list":
+    	  try {
+			List<MemberVO> list = new ArrayList<MemberVO>();
+			list = msv.list();
+			request.setAttribute("list", list);
+			log.info(">>> list 출력 완료");
+			destPage = "/member/list.jsp";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	  
+    	  break;
+      case "modify":
+    	  	destPage="/member/modify.jsp";
+    	  break;
+    	  
+      case "edit":
+    	  try {
+    		String id = request.getParameter("id");
+			String password = request.getParameter("password");
+			String phone = request.getParameter("phone");
+			int birth = Integer.parseInt(request.getParameter("birth"));
+			
+			MemberVO mvo = new MemberVO(id, password, phone, birth);
+			isOk = msv.edit(mvo);
+			log.info(">>> edit > "+ (isOk > 0 ? "성공" : "실패"));
+			log.info(">>> modify 완료, session 변경시작");
+			msv.login(mvo);
+			HttpSession ses = request.getSession();
+			ses.setAttribute("ses", mvo);
+			log.info(">>> session 변경 완료");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	  destPage = "login_auth";
+    	  
+    	  break;
+      }
+      
+      rdp = request.getRequestDispatcher(destPage);
+      rdp.forward(request, response);
+      
+   }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		service(request, response);
-	}
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      service(request, response);
+   }
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		service(request, response);
-
-	}
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      service(request, response);
+   }
 
 }

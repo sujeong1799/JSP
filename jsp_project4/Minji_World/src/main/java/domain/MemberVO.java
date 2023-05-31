@@ -1,113 +1,111 @@
 package domain;
 
 public class MemberVO {
-
+	
 /*
 create table member(
-mId varchar(100) not null,
-mPassword varchar(100) not null,
-mPhone varchar(50) not null,
-mBirth int,
+id varchar(100) not null,
+password varchar(100) not null,
+phone varchar(100) not null,
+birth int,
 reg_date datetime default now(),
 last_login datetime,
-Primary key(mId));
+Primary key(id));
 */
 	
-	private String mId;
-	private String mPassword;
-	private String mPhone;
-	private int mBirth;
+	private String id;
+	private String password;
+	private String phone;
+	private int birth;
 	private String reg_date;
 	private String last_login;
 	
 	//생성자
+	
 	public MemberVO() {}
 
-	// 회원등록 생성자 mId, mPassword, mPhone, mBirth
-	public MemberVO(String mId, String mPassword, String mPhone, int mBirth) {
-		this.mId = mId;
-		this.mPassword = mPassword;
-		this.mPhone = mPhone;
-		this.mBirth = mBirth;
+	// 로그인 생성자
+	public MemberVO(String id, String password) {
+		this.id = id;
+		this.password = password;
+	}
+	
+	// modify 생성자
+	public MemberVO(String id) {
+		this.id = id;
+	}
+	
+	// 등록 생성자
+	public MemberVO(String id, String password, String phone, int birth) {
+		this.id = id;
+		this.password = password;
+		this.phone = phone;
+		this.birth = birth;
 	}
 
-	
-	// 로그인 생성자 mId, mPassword
-	public MemberVO(String mId, String mPassword) {
-		this.mId = mId;
-		this.mPassword = mPassword;
+
+	// 회원리스트 생성자
+	public MemberVO(String id, String phone, String reg_date) {
+		this.id = id;
+		this.phone = phone;
+		this.reg_date = reg_date;
 	}
 
-	
-	// 회원정보리스트 생성자 mId, mBirth, reg_date, last_login
-	public MemberVO(String mId, int mBirth, String reg_date, String last_login) {
-		this.mId = mId;
-		this.mBirth = mBirth;
+	// 회원정보보기 생성자
+	public MemberVO(String id, String phone, int birth, String reg_date, String last_login) {
+		this.id = id;
+		this.phone = phone;
+		this.birth = birth;
 		this.reg_date = reg_date;
 		this.last_login = last_login;
 	}
 
-	
-	// 회원정보상세 생성자 mId, mPhone, mBirth, reg_date, last_login
-	public MemberVO(String mId, String mPhone, int mBirth, String reg_date, String last_login) {
-		this.mId = mId;
-		this.mPhone = mPhone;
-		this.mBirth = mBirth;
-		this.reg_date = reg_date;
-		this.last_login = last_login;
+	// 정보수정 생성자
+	public MemberVO(String password, String phone, int birth) {
+		this.password = password;
+		this.phone = phone;
+		this.birth = birth;
 	}
-
 	
-	// 회원정보수정 생성자 mPassword, mPhone, mBirth
-	public MemberVO(String mPassword, String mPhone, int mBirth) {
-		this.mPassword = mPassword;
-		this.mPhone = mPhone;
-		this.mBirth = mBirth;
-	}
-
-	public MemberVO(String mId, String mPassword, String mPhone, int mBirth, String reg_date, String last_login) {
-		this.mId = mId;
-		this.mPassword = mPassword;
-		this.mPhone = mPhone;
-		this.mBirth = mBirth;
-		this.reg_date = reg_date;
-		this.last_login = last_login;
-	}
-
 	
+	@Override
+	public String toString() {
+		return "MemberVO [id=" + id + ", password=" + password + ", phone=" + phone + ", birth=" + birth + ", reg_date="
+				+ reg_date + ", last_login=" + last_login + "]";
+	}
 	
 	// getter / setter
-	
-	public String getmId() {
-		return mId;
+
+	public String getId() {
+		return id;
 	}
 
-	public void setmId(String mId) {
-		this.mId = mId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getmPassword() {
-		return mPassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setmPassword(String mPassword) {
-		this.mPassword = mPassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	public String getmPhone() {
-		return mPhone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setmPhone(String mPhone) {
-		this.mPhone = mPhone;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public int getmBirth() {
-		return mBirth;
+	public int getBirth() {
+		return birth;
 	}
 
-	public void setmBirth(int mBirth) {
-		this.mBirth = mBirth;
+	public void setBirth(int birth) {
+		this.birth = birth;
 	}
 
 	public String getReg_date() {
@@ -125,7 +123,6 @@ Primary key(mId));
 	public void setLast_login(String last_login) {
 		this.last_login = last_login;
 	}
-	
 	
 	
 }

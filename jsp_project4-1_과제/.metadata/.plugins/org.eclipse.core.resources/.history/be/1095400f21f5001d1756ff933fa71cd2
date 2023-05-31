@@ -1,9 +1,0 @@
-package service;
-
-import domain.BoardVO;
-
-public interface BoardService {
-
-	int insert(BoardVO bvo);
-
-}

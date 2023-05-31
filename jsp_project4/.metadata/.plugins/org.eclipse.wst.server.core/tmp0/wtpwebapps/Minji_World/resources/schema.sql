@@ -7,27 +7,30 @@ flush privileges;
 -- 2023-05-30
 
 create table member(
-mId varchar(100) not null,
-mPassword varchar(100) not null,
-mPhone varchar(50) not null,
-mBirth int,
+id varchar(100) not null,
+password varchar(100) not null,
+phone varchar(100) not null,
+birth int,
 reg_date datetime default now(),
 last_login datetime,
-Primary key(mId));
+Primary key(id));
 
 create table board(
-bNum int not null auto_increment,
-bTitle varchar(100) not null,
-bWriter varchar(100) not null,
-bContent text not null,
-bCount int default 0,
+bno int not null auto_increment,
+title varchar(100) not null,
+writer varchar(100) not null,
+content text,
+read_count int default 0,
 reg_date datetime default now(),
-Primary key(bNum));
+primary key(bno));
 
-create table comment(
-cNum int not null auto_increment,
-bNum int default 0,
-cContent varchar(500) not null,
-cWriter varchar(100) not null default "버니즈",
+Create table comment(
+cno int not null auto_increment,
+bno int default 0,
+writer varchar(100)default "버니즈",
+content varchar(300) not null,
 reg_date datetime default now(),
-Primary key(cNum));
+Primary key(cno));
+
+-- 2023-05-31
+alter table board add image_file text;
