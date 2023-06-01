@@ -5920,8 +5920,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.lsp4e 1 0 2023-05-31 22:07:00.284
 !MESSAGE [Info]	ESLint server running in node v14.15.4
-<<<<<<< HEAD
-=======
 !SESSION 2023-06-01 09:44:02.459 -----------------------------------------------
 eclipse.buildId=4.21.0.I20210906-0500
 java.version=16.0.2
@@ -6089,4 +6087,3 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.ui.navigator 2 0 2023-06-01 14:45:21.455
 !MESSAGE Can't find Navigator Content Descriptor with id: org.eclipse.jst.servlet.ui.EnhancedJavaRendering
->>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
