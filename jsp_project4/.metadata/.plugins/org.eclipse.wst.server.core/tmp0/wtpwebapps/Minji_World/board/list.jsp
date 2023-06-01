@@ -56,13 +56,22 @@
 						<button type="submit" class="btn btn-primary position-relative">
 							검색 <span
 								class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge rounded-pill bg-dark">
+<<<<<<< HEAD
 								${pgh.totalCount } <span class="visually-hidden"></span>
+=======
+								${pgh.totalCount }
+								<span class="visually-hidden"></span>
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 							</span>
 						</button>
 					</div>
 				</form>
 			</div>
 		</div>
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 		<div style="width: 800px; margin: auto; background-color: white;">
 			<table class="table table-hover">
 				<thead class="table-light">

@@ -1,3 +1,8 @@
 #Tomcat publish data
+<<<<<<< HEAD
 #Wed May 31 22:14:41 KST 2023
 org.eclipse.jst.jee.server\:/binary\:D\:\\_jsp_workspace\\jsp_project4\\Minji_World\\src\\main\\webapp\\WEB-INF\\lib\\log4j-web-2.17.2.jar=WEB-INF/lib/log4j-web-2.17.2.jar
+=======
+#Thu Jun 01 14:45:21 KST 2023
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\EZENIC-171\\Desktop\\\uD1B5\uD569\uAD6C\uD604_\uCD5C\uC218\uC815\\jsp_project4\\Minji_World\\src\\main\\webapp\\WEB-INF\\lib\\log4j-web-2.17.2.jar=WEB-INF/lib/log4j-web-2.17.2.jar
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69

@@ -19,7 +19,12 @@
 </head>
 <body
 	style="background-image: url('/image/배경화면.png'); background-repeat: no-repeat; background-attachment: fixed;">
+<<<<<<< HEAD
 	<nav class="navbar" style="background-color: #EFE6FF; border-bottom: 3px solid #E8D9FF;">
+=======
+	<nav class="navbar"
+		style="background-color: #EFE6FF; border-bottom: 3px solid #E8D9FF;">
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/">${ses.id } Bunnies♥</a>
 			<ul class="nav justify-content-end">
@@ -34,8 +39,15 @@
 			</ul>
 		</div>
 	</nav>
+<<<<<<< HEAD
 	<br>	
 	<div style="width: 700px; margin: 0 auto; border: 1px solid; background-color: white; border-radius: 10px" align="center">
+=======
+	<br>
+	<div
+		style="width: 700px; margin: 0 auto; border: 1px solid; background-color: white; border-radius: 10px"
+		align="center">
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 		<br>
 
 		<table class="table" style="width: 600px;">
@@ -64,8 +76,16 @@
 
 		</table>
 		<div align="center">
+<<<<<<< HEAD
 			<img alt="없음" src="/_fileUpload/${bvo.image_file }"
 				style="width: 70%;">
+=======
+			<c:if test="${bvo.image_file ne null }">
+				<img alt="없음" src="/_fileUpload/${bvo.image_file }"
+				style="width: 70%;">
+			</c:if>
+
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 		</div>
 
 		<div align="center">
@@ -93,7 +113,11 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 	<br>
+=======
+		<br>
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 		<div align="center">
 			<a href="/brd/editPage?bno=${bvo.bno }"><button
 					class="btn btn-outline-primary">수정</button></a> <a

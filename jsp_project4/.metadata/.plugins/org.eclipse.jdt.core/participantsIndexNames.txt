@@ -1,7 +1,24 @@
 INDEX VERSION 1.131
+<<<<<<< HEAD
 D:\_jsp_workspace\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3814441973.index
 \Minji_World\src\main\java
 D:\_jsp_workspace\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3361545325.index
 \Minji_World\src\main\java
 D:\_jsp_workspace\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1429218608.index
 \Minji_World\src\main\java
+=======
+C:\Users\EZENIC-171\Desktop\jsp과제_최수정\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3814441973.index
+\Minji_World\src\main\java
+C:\Users\EZENIC-171\Desktop\jsp과제_최수정\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3361545325.index
+\Minji_World\src\main\java
+D:\_jsp_workspace\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3814441973.index
+\Minji_World\src\main\java
+C:\Users\EZENIC-171\Desktop\통합구현_최수정\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3361545325.index
+\Minji_World\src\main\java
+D:\_jsp_workspace\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1429218608.index
+\Minji_World\src\main\java
+D:\_jsp_workspace\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3361545325.index
+\Minji_World\src\main\java
+C:\Users\EZENIC-171\Desktop\통합구현_최수정\jsp_project4\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3814441973.index
+\Minji_World\src\main\java
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69

@@ -169,8 +169,12 @@ public class BoardController extends HttpServlet {
 
 				List<BoardVO> list = bsv.PageList(pgvo);
 				log.info(">>> list : "+list.size());
+<<<<<<< HEAD
 				log.info("list >>>>" + list.get(0));
 				
+=======
+								
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 				PagingHandler ph = new PagingHandler(pgvo, totCount);
 				log.info(">>>> start "+ ph.getStartPage());
 				log.info(">>>> end "+ ph.getEndPage());
@@ -239,6 +243,7 @@ public class BoardController extends HttpServlet {
 						bvo.setContent(item.getString(UTF8));
 						break;
 					case "image_file":
+<<<<<<< HEAD
 						//기존 파일의 이름을 가져와서 담기
 						old_file = item.getString(UTF8); 
 						break;
@@ -254,6 +259,19 @@ public class BoardController extends HttpServlet {
 									.substring(item.getName().lastIndexOf(File.separator)+1);
 							log.info(">>> new_fileName : "+fileName);
 							//실제 저장이름
+=======
+						old_file = item.getString(UTF8); 
+						break;
+					case "new_file":
+						if(item.getSize()>0) {
+							if(old_file != null) {
+								FileHandler fileHandler = new FileHandler();
+								isOk = fileHandler.deleteFile(old_file, savePath);
+							}
+							String fileName = item.getName()
+									.substring(item.getName().lastIndexOf(File.separator)+1);
+							log.info(">>> new_fileName : "+fileName);
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 							fileName = System.currentTimeMillis()+"_"+fileName;
 							File uploadFilePath = new File(fileDir+File.separator+fileName);
 							try {
@@ -265,23 +283,34 @@ public class BoardController extends HttpServlet {
 								.toFile(new File(fileDir+File.separator+"th_"+fileName));
 								
 							} catch (Exception e2) {
+<<<<<<< HEAD
 								// TODO: handle exception
 								log.info(">>> file update on disk fail");
 								e2.printStackTrace();
 							}
 						}else {  //새로운 파일을 넣지 않았다면...
 							//기존파일을 다시 bvo객체에 저장
+=======
+								log.info(">>> file update on disk fail");
+								e2.printStackTrace();
+							}
+						}else {  
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 							bvo.setImage_file(old_file);
 						}
 						break;
 					}
 				}
+<<<<<<< HEAD
 				/*
 				 * int bno = Integer.parseInt(request.getParameter("bno")); String title =
 				 * request.getParameter("title"); String content =
 				 * request.getParameter("content"); BoardVO bvo = new BoardVO(bno, title,
 				 * content);
 				 */
+=======
+
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 				isOk = bsv.edit(bvo);
 				log.info(">>> edit > " + (isOk > 0 ? "성공" : "실패"));
 
@@ -306,6 +335,11 @@ public class BoardController extends HttpServlet {
 				
 				isOk = bsv.remove(bno);
 				log.info(">>> 글 삭제 >" + (isOk > 0 ? "성공" : "실패"));
+<<<<<<< HEAD
+=======
+				
+				
+>>>>>>> 7b74245d043cfe05699b51de66c56de1f663bc69
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
