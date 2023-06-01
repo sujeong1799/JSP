@@ -56,13 +56,15 @@
 						<button type="submit" class="btn btn-primary position-relative">
 							검색 <span
 								class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge rounded-pill bg-dark">
-								${pgh.totalCount } <span class="visually-hidden"></span>
+								${pgh.totalCount }
+								<span class="visually-hidden"></span>
 							</span>
 						</button>
 					</div>
 				</form>
 			</div>
 		</div>
+		
 		<div style="width: 800px; margin: auto; background-color: white;">
 			<table class="table table-hover">
 				<thead class="table-light">
@@ -93,11 +95,9 @@
 			</table>
 		</div>
 		<div align="center">
-			<a href="/brd/page?keyword=${ses.id}&type=w"><button
-					class="btn btn-outline-primary">내가 쓴 글</button></a> <a
-				href="/board/register.jsp"><button
-					class="btn btn-outline-primary">글 작성</button></a> <a href="/"><button
-					class="btn btn-outline-primary">메인</button></a>
+			<a href="/brd/page?keyword=${ses.id}&type=w"><button class="btn btn-outline-primary">내가 쓴 글</button></a>
+			<a href="/board/register.jsp"><button class="btn btn-outline-primary">글 작성</button></a>
+			<a href="/"><button class="btn btn-outline-primary">메인</button></a>
 		</div>
 
 		<br>

@@ -17,12 +17,15 @@
 <title>NewJeans World</title>
 </head>
 <body>
+
 	<c:choose>
 		<c:when test="${ses.id ne null }">
 			<nav class="navbar">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="/">Hello ${ses.id } Bunnies♥</a>
+					
 					<ul class="nav justify-content-end">
+					<li class="nav-item"><a class="nav-link" href="/board/register.jsp" style="font-weight: bold;">🐰 뉴진스 응원하기! 🐰</a></li>
 						<li class="nav-item"><a class="nav-link active"
 							aria-current="page" href="/brd/page">Bunnies Board</a></li>
 						<li class="nav-item"><a class="nav-link" href="/mem/list">Bunnies List</a></li>
@@ -68,10 +71,11 @@ if(msg_login === '0'){
 	alert("로그인 정보가 올바르지 않습니다.");
 }
 
-const msg_mylist = `<c:out value="${msg_mylist}" />`;
-console.log(msg_mylist);
-if(msg_mylist === '0'){
-	alert("작성글이 없습니다.");
+const msg_list = `<c:out value="${msg_list}" />`;
+console.log(msg_list);
+if(msg_list === '0'){
+	alert("작성글이 없습니다. 글 작성 후 눌러주세요.");
+	
 }
 
 </script>

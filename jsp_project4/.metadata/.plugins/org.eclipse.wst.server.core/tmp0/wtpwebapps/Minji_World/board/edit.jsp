@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -18,7 +19,8 @@
 </head>
 <body
 	style="background-image: url('/image/배경화면.png'); background-repeat: no-repeat; background-size: cover;">
-	<nav class="navbar" style="background-color: #EFE6FF; border-bottom: 3px solid #E8D9FF;">
+	<nav class="navbar"
+		style="background-color: #EFE6FF; border-bottom: 3px solid #E8D9FF;">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/">Hello ${ses.id } Bunnies♥</a>
 			<ul class="nav justify-content-end">
@@ -68,7 +70,9 @@
 					</tr>
 					<tr>
 						<th>파일첨부</th>
-						<td><img alt="없음" src="/_fileUpload/th_${bvo.image_file }">
+						<td><c:if test="${bvo.image_file ne null }">
+								<img alt="없음" src="/_fileUpload/th_${bvo.image_file }">
+							</c:if>
 							<input type="hidden" name="image_file" value="${bvo.image_file }">
 							<input type="file" name="new_file">
 					</tr>

@@ -10,7 +10,7 @@
 </head>
 <body style="background-image: url('/image/배경화면.png'); background-repeat: no-repeat; background-size: cover;">
 	<br>
-	<div align="center" style="background-color: white; width: 400px; height: 300px; border-radius: 20px; margin: 150px auto;">
+	<div align="center" style="background-color: white; border: 1px solid; width: 400px; height: 300px; border-radius: 20px; margin: 150px auto;">
 		<form action="/mem/login_auth" method="post">
 			<div style="width: 350px; height: 150px">
 					<div class="input-group mb-3" style="margin-top: 20px">
